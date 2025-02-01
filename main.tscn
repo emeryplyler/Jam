@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3scy7pclrd8h"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fhoqf"]
+size = Vector2(200, 200)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tijw1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_46s2m"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Ground" type="StaticBody3D" parent="World"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground"]
+shape = SubResource("WorldBoundaryShape3D_65nkc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ground"]
+mesh = SubResource("PlaneMesh_fhoqf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(0.5, 2.58096e-08, 0.866025, -0.866025, 1.49012e-08, 0.5, 0, -1, 2.98023e-08, 0, 9.50741, -10.5862)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51372, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_tijw1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_46s2m")
+
+[node name="FollowCam" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.902578, 0.430527, 0, -0.430527, 0.902578, 0, 5.39602, 5.86705)
