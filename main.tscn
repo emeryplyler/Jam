@@ -38,15 +38,20 @@ mesh = SubResource("PrismMesh_6wxw5")
 transform = Transform3D(0.831062, 0, -0.55618, 0, 1, 0, 0.55618, 0, 0.831062, 3.6685, 0.354627, -8.0724)
 mesh = SubResource("PrismMesh_6wxw5")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19895, 0)
 script = ExtResource("1_rwvyv")
+cam_arm = NodePath("1stPersonCamArm")
+player_view = NodePath("1stPersonCamArm/1stPersonCam")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_tijw1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+visible = false
 mesh = SubResource("CapsuleMesh_46s2m")
 
-[node name="1stPersonCam" type="Camera3D" parent="CharacterBody3D"]
+[node name="1stPersonCamArm" type="Node3D" parent="CharacterBody3D"]
+
+[node name="1stPersonCam" type="Camera3D" parent="CharacterBody3D/1stPersonCamArm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.601149, 0)

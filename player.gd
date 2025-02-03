@@ -1,9 +1,16 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 10.0
+const mouse_sens = .002
+#const JUMP_VELOCITY = 4.5
 
+@export var cam_arm: Node3D
+@export var player_view: Camera3D
+
+func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -24,5 +31,16 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	
 
 	move_and_slide()
+
+# Handle mouse input
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		rotation.y -= event.relative.x * mouse_sens
+		
+		cam_arm.rotation.x -= event.relative.y * mouse_sens
+		cam_arm.rotation.x = clamp(cam_arm.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+	
