@@ -48,6 +48,12 @@ func _physics_process(delta: float) -> void:
 						emit_signal("interact_door", thing)
 						var destination = thing.on_interact()
 						teleport(destination)
+						
+	if Input.is_action_just_pressed("Show Cursor"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		elif Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 
 	move_and_slide()
