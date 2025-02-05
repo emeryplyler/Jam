@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb3bhghcaxos0"]
+
+[ext_resource type="Script" path="res://door.gd" id="1_dvfwg"]
+[ext_resource type="Shape3D" uid="uid://bbwvy5i1dfs32" path="res://world/house/door/doorShape.tres" id="2_eqexe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2u3pd"]
+albedo_color = Color(0.48, 0.3648, 0.336, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_icxgq"]
+material = SubResource("StandardMaterial3D_2u3pd")
+size = Vector3(1, 1.5, 0.3)
+
+[node name="DoorRange" type="Area3D" groups=["Door", "Interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2544, 1.96618)
+script = ExtResource("1_dvfwg")
+
+[node name="DoorRangeShape" type="CollisionShape3D" parent="."]
+shape = ExtResource("2_eqexe")
+
+[node name="DoorMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_icxgq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

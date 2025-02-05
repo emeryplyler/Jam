@@ -7,6 +7,11 @@ const mouse_sens = .002
 
 @export var cam_arm: Node3D
 @export var player_view: Camera3D
+@export var interact_range: Area3D
+
+var things_in_range = [] # this is updated whenever things enter InteractRange using signals
+
+signal interact_door
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -33,6 +38,25 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	
+	# Handle interaction button
+	if Input.is_action_just_pressed("Interact"):
+		if things_in_range.size() > 0:
+			for thing in things_in_range:
+				if thing.is_in_group("Interactable"):
+					if thing.is_in_group("Door"):
+					# send signal opening_door(thing)
+						emit_signal("interact_door", thing)
+						var destination = thing.on_interact()
+						teleport(destination)
+	
+	# Code from Carrier for interacting with things
+	#if Input.is_action_just_pressed("interact"):
+	#if objects_in_range.size() > 0 and not held_object: # only hold one thing at a time
+		#for object in objects_in_range:
+			#if object.is_in_group("Grabbable"):
+				#held_object = object
+				#held_object.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
+				#break
 
 	move_and_slide()
 
@@ -43,4 +67,18 @@ func _input(event: InputEvent) -> void:
 		
 		cam_arm.rotation.x -= event.relative.y * mouse_sens
 		cam_arm.rotation.x = clamp(cam_arm.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-	
+
+
+func _on_interact_range_area_entered(area: Area3D) -> void:
+	if area != interact_range:
+		things_in_range.append(area)
+
+
+func _on_interact_range_area_exited(area: Area3D) -> void:
+	things_in_range.erase(area)
+
+
+func teleport(destination: Vector3):
+	# disable camera or fade to black
+	reset_physics_interpolation()
+	set_position(destination)

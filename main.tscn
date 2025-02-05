@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=12 format=3 uid="uid://c3scy7pclrd8h"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_rwvyv"]
+[ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://prefabs/door.tscn" id="1_me5c6"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
 
@@ -9,9 +10,20 @@ size = Vector2(200, 200)
 
 [sub_resource type="PrismMesh" id="PrismMesh_6wxw5"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_si04p"]
+albedo_color = Color(0.4836, 0.84072, 0.93, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7eftf"]
+material = SubResource("StandardMaterial3D_si04p")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_llvgx"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tijw1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_46s2m"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_11rjj"]
+radius = 1.41
 
 [node name="Node3D" type="Node3D"]
 
@@ -38,6 +50,28 @@ mesh = SubResource("PrismMesh_6wxw5")
 transform = Transform3D(0.831062, 0, -0.55618, 0, 1, 0, 0.55618, 0, 0.831062, 3.6685, 0.354627, -8.0724)
 mesh = SubResource("PrismMesh_6wxw5")
 
+[node name="House" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.281, 1.9802, -9.77067)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/House"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+mesh = SubResource("BoxMesh_7eftf")
+
+[node name="DoorRange" parent="World/House" node_paths=PackedStringArray("destination") instance=ExtResource("1_me5c6")]
+destination = NodePath("../../House2/DoorRange")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="World/House"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/House/RigidBody3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("BoxShape3D_llvgx")
+
+[node name="House2" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3521, 2.29985, -4.82508)
+
+[node name="DoorRange" parent="World/House2" node_paths=PackedStringArray("destination") instance=ExtResource("1_me5c6")]
+destination = NodePath("../../House/DoorRange")
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19895, 0)
 script = ExtResource("1_rwvyv")
@@ -48,10 +82,18 @@ player_view = NodePath("1stPersonCamArm/1stPersonCam")
 shape = SubResource("CapsuleShape3D_tijw1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-visible = false
 mesh = SubResource("CapsuleMesh_46s2m")
 
 [node name="1stPersonCamArm" type="Node3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="1stPersonCam" type="Camera3D" parent="CharacterBody3D/1stPersonCamArm"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.601149, 0)
+
+[node name="InteractRange" type="Area3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12782)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractRange"]
+shape = SubResource("CylinderShape3D_11rjj")
+
+[connection signal="area_entered" from="CharacterBody3D/InteractRange" to="CharacterBody3D" method="_on_interact_range_area_entered"]
+[connection signal="area_exited" from="CharacterBody3D/InteractRange" to="CharacterBody3D" method="_on_interact_range_area_exited"]
