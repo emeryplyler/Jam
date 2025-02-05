@@ -49,14 +49,6 @@ func _physics_process(delta: float) -> void:
 						var destination = thing.on_interact()
 						teleport(destination)
 	
-	# Code from Carrier for interacting with things
-	#if Input.is_action_just_pressed("interact"):
-	#if objects_in_range.size() > 0 and not held_object: # only hold one thing at a time
-		#for object in objects_in_range:
-			#if object.is_in_group("Grabbable"):
-				#held_object = object
-				#held_object.freeze_mode = RigidBody3D.FREEZE_MODE_KINEMATIC
-				#break
 
 	move_and_slide()
 

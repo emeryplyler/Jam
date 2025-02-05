@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=13 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://prefabs/door.tscn" id="1_me5c6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
+[ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
 
@@ -71,6 +72,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3521, 2.29985, -4.82508)
 
 [node name="DoorRange" parent="World/House2" node_paths=PackedStringArray("destination") instance=ExtResource("1_me5c6")]
 destination = NodePath("../../House/DoorRange")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = ExtResource("2_5gfh0")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19895, 0)
