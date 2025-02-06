@@ -3,15 +3,17 @@ extends CharacterBody3D
 
 const SPEED = 10.0
 const mouse_sens = .002
+const raycast_length = 1000
 #const JUMP_VELOCITY = 4.5
 
 @export var cam_arm: Node3D
 @export var player_view: Camera3D
 @export var interact_range: Area3D
+@export var interact_ray: RayCast3D
 
 var things_in_range = [] # this is updated whenever things enter InteractRange using signals
+var selected_thing
 
-signal interact_door
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -38,17 +40,32 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	
+	# what is player looking at?
+	# do raycast
+	#if interact_ray.is_colliding():
+	var target = interact_ray.get_collider()
+	
+	if target != selected_thing:
+		if target:
+			if target.is_in_group("Interactable"):
+				target.highlight()
+		if selected_thing:
+			if selected_thing.is_in_group("Interactable"):
+				selected_thing.unhighlight()
+	selected_thing = target
+	
+	
+	
 	# Handle interaction button
 	if Input.is_action_just_pressed("Interact"):
-		if things_in_range.size() > 0:
-			for thing in things_in_range:
-				if thing.is_in_group("Interactable"):
-					if thing.is_in_group("Door"):
-					# send signal opening_door(thing)
-						emit_signal("interact_door", thing)
-						var destination = thing.on_interact()
-						teleport(destination)
-						
+		# raycast
+		if selected_thing:
+			if selected_thing.is_in_group("Door"):
+				# send signal opening_door(thing)
+				var destination = selected_thing.on_interact()
+				teleport(destination)
+	
+	
 	if Input.is_action_just_pressed("Show Cursor"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -67,15 +84,7 @@ func _input(event: InputEvent) -> void:
 		cam_arm.rotation.x = clamp(cam_arm.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 
-func _on_interact_range_area_entered(area: Area3D) -> void:
-	if area != interact_range:
-		things_in_range.append(area)
-
-
-func _on_interact_range_area_exited(area: Area3D) -> void:
-	things_in_range.erase(area)
-
-
+# used for moving the player between doors
 func teleport(destination: Vector3):
 	# disable camera or fade to black
 	reset_physics_interpolation()

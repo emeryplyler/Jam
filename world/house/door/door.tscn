@@ -21,3 +21,5 @@ shape = ExtResource("2_eqexe")
 mesh = SubResource("BoxMesh_icxgq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

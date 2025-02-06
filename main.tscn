@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=12 format=3 uid="uid://c3scy7pclrd8h"]
 
-[ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://prefabs/door.tscn" id="1_me5c6"]
+[ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://world/house/door/door.tscn" id="1_me5c6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
 
@@ -22,9 +22,6 @@ material = SubResource("StandardMaterial3D_si04p")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tijw1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_46s2m"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_11rjj"]
-radius = 1.41
 
 [node name="Node3D" type="Node3D"]
 
@@ -76,11 +73,13 @@ destination = NodePath("../../House/DoorRange")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource("2_5gfh0")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view")]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view", "interact_range", "interact_ray")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19895, 0)
 script = ExtResource("1_rwvyv")
 cam_arm = NodePath("1stPersonCamArm")
 player_view = NodePath("1stPersonCamArm/1stPersonCam")
+interact_range = NodePath("")
+interact_ray = NodePath("1stPersonCamArm/RayCast3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_tijw1")
@@ -93,11 +92,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="1stPersonCam" type="Camera3D" parent="CharacterBody3D/1stPersonCamArm"]
 
-[node name="InteractRange" type="Area3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12782)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D/InteractRange"]
-shape = SubResource("CylinderShape3D_11rjj")
-
-[connection signal="area_entered" from="CharacterBody3D/InteractRange" to="CharacterBody3D" method="_on_interact_range_area_entered"]
-[connection signal="area_exited" from="CharacterBody3D/InteractRange" to="CharacterBody3D" method="_on_interact_range_area_exited"]
+[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D/1stPersonCamArm"]
+target_position = Vector3(0, 0, -3.2)
+collide_with_areas = true

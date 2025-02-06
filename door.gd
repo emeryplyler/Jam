@@ -21,3 +21,10 @@ func _process(delta: float) -> void:
 func on_interact():
 	var target = destination.global_position
 	return(target)
+	
+func highlight():
+	print("You're looking at", self)
+	
+
+func unhighlight():
+	print("You stopped looking at", self)
