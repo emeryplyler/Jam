@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=16 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://world/house/door/door.tscn" id="1_me5c6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
+[ext_resource type="Texture2D" uid="uid://6w3xg78m7scg" path="res://ui/e.png" id="4_ldyvo"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
 
@@ -23,7 +24,258 @@ material = SubResource("StandardMaterial3D_si04p")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_46s2m"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="FontFile" id="FontFile_856a8"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/680/0/ascent = 0.0
+cache/0/680/0/descent = 0.0
+cache/0/680/0/underline_position = 0.0
+cache/0/680/0/underline_thickness = 0.0
+cache/0/680/0/scale = 1.0
+cache/0/1230/0/ascent = 0.0
+cache/0/1230/0/descent = 0.0
+cache/0/1230/0/underline_position = 0.0
+cache/0/1230/0/underline_thickness = 0.0
+cache/0/1230/0/scale = 1.0
+cache/0/1760/0/ascent = 0.0
+cache/0/1760/0/descent = 0.0
+cache/0/1760/0/underline_position = 0.0
+cache/0/1760/0/underline_thickness = 0.0
+cache/0/1760/0/scale = 1.0
+cache/0/955/0/ascent = 0.0
+cache/0/955/0/descent = 0.0
+cache/0/955/0/underline_position = 0.0
+cache/0/955/0/underline_thickness = 0.0
+cache/0/955/0/scale = 1.0
+cache/0/665/0/ascent = 0.0
+cache/0/665/0/descent = 0.0
+cache/0/665/0/underline_position = 0.0
+cache/0/665/0/underline_thickness = 0.0
+cache/0/665/0/scale = 1.0
+cache/0/35/0/ascent = 0.0
+cache/0/35/0/descent = 0.0
+cache/0/35/0/underline_position = 0.0
+cache/0/35/0/underline_thickness = 0.0
+cache/0/35/0/scale = 1.0
+cache/0/210/0/ascent = 0.0
+cache/0/210/0/descent = 0.0
+cache/0/210/0/underline_position = 0.0
+cache/0/210/0/underline_thickness = 0.0
+cache/0/210/0/scale = 1.0
+cache/0/350/0/ascent = 0.0
+cache/0/350/0/descent = 0.0
+cache/0/350/0/underline_position = 0.0
+cache/0/350/0/underline_thickness = 0.0
+cache/0/350/0/scale = 1.0
+cache/0/410/0/ascent = 0.0
+cache/0/410/0/descent = 0.0
+cache/0/410/0/underline_position = 0.0
+cache/0/410/0/underline_thickness = 0.0
+cache/0/410/0/scale = 1.0
+cache/0/375/0/ascent = 0.0
+cache/0/375/0/descent = 0.0
+cache/0/375/0/underline_position = 0.0
+cache/0/375/0/underline_thickness = 0.0
+cache/0/375/0/scale = 1.0
+cache/0/115/0/ascent = 0.0
+cache/0/115/0/descent = 0.0
+cache/0/115/0/underline_position = 0.0
+cache/0/115/0/underline_thickness = 0.0
+cache/0/115/0/scale = 1.0
+cache/0/5/0/ascent = 0.0
+cache/0/5/0/descent = 0.0
+cache/0/5/0/underline_position = 0.0
+cache/0/5/0/underline_thickness = 0.0
+cache/0/5/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/70/0/ascent = 0.0
+cache/0/70/0/descent = 0.0
+cache/0/70/0/underline_position = 0.0
+cache/0/70/0/underline_thickness = 0.0
+cache/0/70/0/scale = 1.0
+cache/0/75/0/ascent = 0.0
+cache/0/75/0/descent = 0.0
+cache/0/75/0/underline_position = 0.0
+cache/0/75/0/underline_thickness = 0.0
+cache/0/75/0/scale = 1.0
+cache/0/85/0/ascent = 0.0
+cache/0/85/0/descent = 0.0
+cache/0/85/0/underline_position = 0.0
+cache/0/85/0/underline_thickness = 0.0
+cache/0/85/0/scale = 1.0
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/1/0/ascent = 0.0
+cache/0/1/0/descent = 0.0
+cache/0/1/0/underline_position = 0.0
+cache/0/1/0/underline_thickness = 0.0
+cache/0/1/0/scale = 1.0
+cache/0/2/0/ascent = 0.0
+cache/0/2/0/descent = 0.0
+cache/0/2/0/underline_position = 0.0
+cache/0/2/0/underline_thickness = 0.0
+cache/0/2/0/scale = 1.0
+cache/0/27/0/ascent = 0.0
+cache/0/27/0/descent = 0.0
+cache/0/27/0/underline_position = 0.0
+cache/0/27/0/underline_thickness = 0.0
+cache/0/27/0/scale = 1.0
+cache/0/72/0/ascent = 0.0
+cache/0/72/0/descent = 0.0
+cache/0/72/0/underline_position = 0.0
+cache/0/72/0/underline_thickness = 0.0
+cache/0/72/0/scale = 1.0
+cache/0/107/0/ascent = 0.0
+cache/0/107/0/descent = 0.0
+cache/0/107/0/underline_position = 0.0
+cache/0/107/0/underline_thickness = 0.0
+cache/0/107/0/scale = 1.0
+cache/0/127/0/ascent = 0.0
+cache/0/127/0/descent = 0.0
+cache/0/127/0/underline_position = 0.0
+cache/0/127/0/underline_thickness = 0.0
+cache/0/127/0/scale = 1.0
+cache/0/137/0/ascent = 0.0
+cache/0/137/0/descent = 0.0
+cache/0/137/0/underline_position = 0.0
+cache/0/137/0/underline_thickness = 0.0
+cache/0/137/0/scale = 1.0
+cache/0/152/0/ascent = 0.0
+cache/0/152/0/descent = 0.0
+cache/0/152/0/underline_position = 0.0
+cache/0/152/0/underline_thickness = 0.0
+cache/0/152/0/scale = 1.0
+cache/0/167/0/ascent = 0.0
+cache/0/167/0/descent = 0.0
+cache/0/167/0/underline_position = 0.0
+cache/0/167/0/underline_thickness = 0.0
+cache/0/167/0/scale = 1.0
+cache/0/182/0/ascent = 0.0
+cache/0/182/0/descent = 0.0
+cache/0/182/0/underline_position = 0.0
+cache/0/182/0/underline_thickness = 0.0
+cache/0/182/0/scale = 1.0
+cache/0/187/0/ascent = 0.0
+cache/0/187/0/descent = 0.0
+cache/0/187/0/underline_position = 0.0
+cache/0/187/0/underline_thickness = 0.0
+cache/0/187/0/scale = 1.0
+cache/0/192/0/ascent = 0.0
+cache/0/192/0/descent = 0.0
+cache/0/192/0/underline_position = 0.0
+cache/0/192/0/underline_thickness = 0.0
+cache/0/192/0/scale = 1.0
+cache/0/177/0/ascent = 0.0
+cache/0/177/0/descent = 0.0
+cache/0/177/0/underline_position = 0.0
+cache/0/177/0/underline_thickness = 0.0
+cache/0/177/0/scale = 1.0
+cache/0/172/0/ascent = 0.0
+cache/0/172/0/descent = 0.0
+cache/0/172/0/underline_position = 0.0
+cache/0/172/0/underline_thickness = 0.0
+cache/0/172/0/scale = 1.0
+cache/0/157/0/ascent = 0.0
+cache/0/157/0/descent = 0.0
+cache/0/157/0/underline_position = 0.0
+cache/0/157/0/underline_thickness = 0.0
+cache/0/157/0/scale = 1.0
+cache/0/147/0/ascent = 0.0
+cache/0/147/0/descent = 0.0
+cache/0/147/0/underline_position = 0.0
+cache/0/147/0/underline_thickness = 0.0
+cache/0/147/0/scale = 1.0
+cache/0/142/0/ascent = 0.0
+cache/0/142/0/descent = 0.0
+cache/0/142/0/underline_position = 0.0
+cache/0/142/0/underline_thickness = 0.0
+cache/0/142/0/scale = 1.0
+cache/0/132/0/ascent = 0.0
+cache/0/132/0/descent = 0.0
+cache/0/132/0/underline_position = 0.0
+cache/0/132/0/underline_thickness = 0.0
+cache/0/132/0/scale = 1.0
+cache/0/122/0/ascent = 0.0
+cache/0/122/0/descent = 0.0
+cache/0/122/0/underline_position = 0.0
+cache/0/122/0/underline_thickness = 0.0
+cache/0/122/0/scale = 1.0
+cache/0/112/0/ascent = 0.0
+cache/0/112/0/descent = 0.0
+cache/0/112/0/underline_position = 0.0
+cache/0/112/0/underline_thickness = 0.0
+cache/0/112/0/scale = 1.0
+cache/0/97/0/ascent = 0.0
+cache/0/97/0/descent = 0.0
+cache/0/97/0/underline_position = 0.0
+cache/0/97/0/underline_thickness = 0.0
+cache/0/97/0/scale = 1.0
+cache/0/57/0/ascent = 0.0
+cache/0/57/0/descent = 0.0
+cache/0/57/0/underline_position = 0.0
+cache/0/57/0/underline_thickness = 0.0
+cache/0/57/0/scale = 1.0
+cache/0/47/0/ascent = 0.0
+cache/0/47/0/descent = 0.0
+cache/0/47/0/underline_position = 0.0
+cache/0/47/0/underline_thickness = 0.0
+cache/0/47/0/scale = 1.0
+cache/0/37/0/ascent = 0.0
+cache/0/37/0/descent = 0.0
+cache/0/37/0/underline_position = 0.0
+cache/0/37/0/underline_thickness = 0.0
+cache/0/37/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+cache/0/45/0/ascent = 0.0
+cache/0/45/0/descent = 0.0
+cache/0/45/0/underline_position = 0.0
+cache/0/45/0/underline_thickness = 0.0
+cache/0/45/0/scale = 1.0
+
+[sub_resource type="Theme" id="Theme_k8t3u"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 2
+Label/fonts/font = SubResource("FontFile_856a8")
+
+[sub_resource type="Theme" id="Theme_70clx"]
+default_font_size = 60
+
+[node name="Root" type="Node3D"]
 
 [node name="World" type="Node3D" parent="."]
 
@@ -73,12 +325,11 @@ destination = NodePath("../../House/DoorRange")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource("2_5gfh0")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view", "interact_range", "interact_ray")]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view", "interact_ray")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19895, 0)
 script = ExtResource("1_rwvyv")
 cam_arm = NodePath("1stPersonCamArm")
 player_view = NodePath("1stPersonCamArm/1stPersonCam")
-interact_range = NodePath("")
 interact_ray = NodePath("1stPersonCamArm/RayCast3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -95,3 +346,63 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 [node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D/1stPersonCamArm"]
 target_position = Vector3(0, 0, -3.2)
 collide_with_areas = true
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_k8t3u")
+
+[node name="E" type="TextureRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_top = -120.0
+offset_right = -84.0
+offset_bottom = 8.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_ldyvo")
+
+[node name="OpenDoor" type="Label" parent="UI/E"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = -108.0
+offset_right = 345.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_70clx")
+text = "Open door"
+
+[node name="Chat" type="Label" parent="UI/E"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = -108.0
+offset_right = 345.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_70clx")
+text = "Chat"

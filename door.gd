@@ -7,10 +7,12 @@ extends Area3D
 # match this door name between matching locations
 #@export var door_name: String
 @export var destination: Area3D
+var ui: Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	ui = get_tree().root.get_node("Root/UI/E")
+	print(ui)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -23,8 +25,12 @@ func on_interact():
 	return(target)
 	
 func highlight():
+	ui.set_visible(true)
+	ui.get_node("OpenDoor").set_visible(true)
 	print("You're looking at", self)
 	
 
 func unhighlight():
 	print("You stopped looking at", self)
+	ui.set_visible(false)
+	ui.get_node("OpenDoor").set_visible(false)
