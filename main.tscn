@@ -1,10 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=23 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://world/house/door/door.tscn" id="1_me5c6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
 [ext_resource type="Texture2D" uid="uid://6w3xg78m7scg" path="res://ui/e.png" id="4_ldyvo"]
+[ext_resource type="Texture2D" uid="uid://cqolb7o880qhy" path="res://ui/dialogue/textbox.png" id="5_8bmym"]
+[ext_resource type="Script" path="res://ui/dialogue/dialogue.gd" id="5_dd1ya"]
 [ext_resource type="PackedScene" uid="uid://cmkvgirxhcmku" path="res://npcs/npc/npc.tscn" id="5_jvqy5"]
+[ext_resource type="JSON" path="res://ui/dialogue/dialogue.json" id="6_umta2"]
+[ext_resource type="Script" path="res://dialogue_manager.gd" id="8_dynvb"]
+[ext_resource type="Texture2D" uid="uid://hlq8syesxqco" path="res://npcs/npc/soups.png" id="9_fo0y5"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
 
@@ -266,6 +271,276 @@ cache/0/45/0/descent = 0.0
 cache/0/45/0/underline_position = 0.0
 cache/0/45/0/underline_thickness = 0.0
 cache/0/45/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/51/0/ascent = 0.0
+cache/0/51/0/descent = 0.0
+cache/0/51/0/underline_position = 0.0
+cache/0/51/0/underline_thickness = 0.0
+cache/0/51/0/scale = 1.0
+cache/0/116/0/ascent = 0.0
+cache/0/116/0/descent = 0.0
+cache/0/116/0/underline_position = 0.0
+cache/0/116/0/underline_thickness = 0.0
+cache/0/116/0/scale = 1.0
+cache/0/221/0/ascent = 0.0
+cache/0/221/0/descent = 0.0
+cache/0/221/0/underline_position = 0.0
+cache/0/221/0/underline_thickness = 0.0
+cache/0/221/0/scale = 1.0
+cache/0/531/0/ascent = 0.0
+cache/0/531/0/descent = 0.0
+cache/0/531/0/underline_position = 0.0
+cache/0/531/0/underline_thickness = 0.0
+cache/0/531/0/scale = 1.0
+cache/0/701/0/ascent = 0.0
+cache/0/701/0/descent = 0.0
+cache/0/701/0/underline_position = 0.0
+cache/0/701/0/underline_thickness = 0.0
+cache/0/701/0/scale = 1.0
+cache/0/1036/0/ascent = 0.0
+cache/0/1036/0/descent = 0.0
+cache/0/1036/0/underline_position = 0.0
+cache/0/1036/0/underline_thickness = 0.0
+cache/0/1036/0/scale = 1.0
+cache/0/1361/0/ascent = 0.0
+cache/0/1361/0/descent = 0.0
+cache/0/1361/0/underline_position = 0.0
+cache/0/1361/0/underline_thickness = 0.0
+cache/0/1361/0/scale = 1.0
+cache/0/1931/0/ascent = 0.0
+cache/0/1931/0/descent = 0.0
+cache/0/1931/0/underline_position = 0.0
+cache/0/1931/0/underline_thickness = 0.0
+cache/0/1931/0/scale = 1.0
+cache/0/1991/0/ascent = 0.0
+cache/0/1991/0/descent = 0.0
+cache/0/1991/0/underline_position = 0.0
+cache/0/1991/0/underline_thickness = 0.0
+cache/0/1991/0/scale = 1.0
+cache/0/1976/0/ascent = 0.0
+cache/0/1976/0/descent = 0.0
+cache/0/1976/0/underline_position = 0.0
+cache/0/1976/0/underline_thickness = 0.0
+cache/0/1976/0/scale = 1.0
+cache/0/1521/0/ascent = 0.0
+cache/0/1521/0/descent = 0.0
+cache/0/1521/0/underline_position = 0.0
+cache/0/1521/0/underline_thickness = 0.0
+cache/0/1521/0/scale = 1.0
+cache/0/1251/0/ascent = 0.0
+cache/0/1251/0/descent = 0.0
+cache/0/1251/0/underline_position = 0.0
+cache/0/1251/0/underline_thickness = 0.0
+cache/0/1251/0/scale = 1.0
+cache/0/1196/0/ascent = 0.0
+cache/0/1196/0/descent = 0.0
+cache/0/1196/0/underline_position = 0.0
+cache/0/1196/0/underline_thickness = 0.0
+cache/0/1196/0/scale = 1.0
+cache/0/1191/0/ascent = 0.0
+cache/0/1191/0/descent = 0.0
+cache/0/1191/0/underline_position = 0.0
+cache/0/1191/0/underline_thickness = 0.0
+cache/0/1191/0/scale = 1.0
+cache/0/1151/0/ascent = 0.0
+cache/0/1151/0/descent = 0.0
+cache/0/1151/0/underline_position = 0.0
+cache/0/1151/0/underline_thickness = 0.0
+cache/0/1151/0/scale = 1.0
+cache/0/1116/0/ascent = 0.0
+cache/0/1116/0/descent = 0.0
+cache/0/1116/0/underline_position = 0.0
+cache/0/1116/0/underline_thickness = 0.0
+cache/0/1116/0/scale = 1.0
+cache/0/1091/0/ascent = 0.0
+cache/0/1091/0/descent = 0.0
+cache/0/1091/0/underline_position = 0.0
+cache/0/1091/0/underline_thickness = 0.0
+cache/0/1091/0/scale = 1.0
+cache/0/1071/0/ascent = 0.0
+cache/0/1071/0/descent = 0.0
+cache/0/1071/0/underline_position = 0.0
+cache/0/1071/0/underline_thickness = 0.0
+cache/0/1071/0/scale = 1.0
+cache/0/1031/0/ascent = 0.0
+cache/0/1031/0/descent = 0.0
+cache/0/1031/0/underline_position = 0.0
+cache/0/1031/0/underline_thickness = 0.0
+cache/0/1031/0/scale = 1.0
+cache/0/956/0/ascent = 0.0
+cache/0/956/0/descent = 0.0
+cache/0/956/0/underline_position = 0.0
+cache/0/956/0/underline_thickness = 0.0
+cache/0/956/0/scale = 1.0
+cache/0/876/0/ascent = 0.0
+cache/0/876/0/descent = 0.0
+cache/0/876/0/underline_position = 0.0
+cache/0/876/0/underline_thickness = 0.0
+cache/0/876/0/scale = 1.0
+cache/0/746/0/ascent = 0.0
+cache/0/746/0/descent = 0.0
+cache/0/746/0/underline_position = 0.0
+cache/0/746/0/underline_thickness = 0.0
+cache/0/746/0/scale = 1.0
+cache/0/641/0/ascent = 0.0
+cache/0/641/0/descent = 0.0
+cache/0/641/0/underline_position = 0.0
+cache/0/641/0/underline_thickness = 0.0
+cache/0/641/0/scale = 1.0
+cache/0/546/0/ascent = 0.0
+cache/0/546/0/descent = 0.0
+cache/0/546/0/underline_position = 0.0
+cache/0/546/0/underline_thickness = 0.0
+cache/0/546/0/scale = 1.0
+cache/0/496/0/ascent = 0.0
+cache/0/496/0/descent = 0.0
+cache/0/496/0/underline_position = 0.0
+cache/0/496/0/underline_thickness = 0.0
+cache/0/496/0/scale = 1.0
+cache/0/426/0/ascent = 0.0
+cache/0/426/0/descent = 0.0
+cache/0/426/0/underline_position = 0.0
+cache/0/426/0/underline_thickness = 0.0
+cache/0/426/0/scale = 1.0
+cache/0/391/0/ascent = 0.0
+cache/0/391/0/descent = 0.0
+cache/0/391/0/underline_position = 0.0
+cache/0/391/0/underline_thickness = 0.0
+cache/0/391/0/scale = 1.0
+cache/0/381/0/ascent = 0.0
+cache/0/381/0/descent = 0.0
+cache/0/381/0/underline_position = 0.0
+cache/0/381/0/underline_thickness = 0.0
+cache/0/381/0/scale = 1.0
+cache/0/371/0/ascent = 0.0
+cache/0/371/0/descent = 0.0
+cache/0/371/0/underline_position = 0.0
+cache/0/371/0/underline_thickness = 0.0
+cache/0/371/0/scale = 1.0
+cache/0/356/0/ascent = 0.0
+cache/0/356/0/descent = 0.0
+cache/0/356/0/underline_position = 0.0
+cache/0/356/0/underline_thickness = 0.0
+cache/0/356/0/scale = 1.0
+cache/0/6/0/ascent = 0.0
+cache/0/6/0/descent = 0.0
+cache/0/6/0/underline_position = 0.0
+cache/0/6/0/underline_thickness = 0.0
+cache/0/6/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+cache/0/31/0/ascent = 0.0
+cache/0/31/0/descent = 0.0
+cache/0/31/0/underline_position = 0.0
+cache/0/31/0/underline_thickness = 0.0
+cache/0/31/0/scale = 1.0
+cache/0/76/0/ascent = 0.0
+cache/0/76/0/descent = 0.0
+cache/0/76/0/underline_position = 0.0
+cache/0/76/0/underline_thickness = 0.0
+cache/0/76/0/scale = 1.0
+cache/0/306/0/ascent = 0.0
+cache/0/306/0/descent = 0.0
+cache/0/306/0/underline_position = 0.0
+cache/0/306/0/underline_thickness = 0.0
+cache/0/306/0/scale = 1.0
+cache/0/451/0/ascent = 0.0
+cache/0/451/0/descent = 0.0
+cache/0/451/0/underline_position = 0.0
+cache/0/451/0/underline_thickness = 0.0
+cache/0/451/0/scale = 1.0
+cache/0/836/0/ascent = 0.0
+cache/0/836/0/descent = 0.0
+cache/0/836/0/underline_position = 0.0
+cache/0/836/0/underline_thickness = 0.0
+cache/0/836/0/scale = 1.0
+cache/0/1226/0/ascent = 0.0
+cache/0/1226/0/descent = 0.0
+cache/0/1226/0/underline_position = 0.0
+cache/0/1226/0/underline_thickness = 0.0
+cache/0/1226/0/scale = 1.0
+cache/0/1811/0/ascent = 0.0
+cache/0/1811/0/descent = 0.0
+cache/0/1811/0/underline_position = 0.0
+cache/0/1811/0/underline_thickness = 0.0
+cache/0/1811/0/scale = 1.0
+cache/0/1861/0/ascent = 0.0
+cache/0/1861/0/descent = 0.0
+cache/0/1861/0/underline_position = 0.0
+cache/0/1861/0/underline_thickness = 0.0
+cache/0/1861/0/scale = 1.0
+cache/0/1836/0/ascent = 0.0
+cache/0/1836/0/descent = 0.0
+cache/0/1836/0/underline_position = 0.0
+cache/0/1836/0/underline_thickness = 0.0
+cache/0/1836/0/scale = 1.0
+cache/0/1141/0/ascent = 0.0
+cache/0/1141/0/descent = 0.0
+cache/0/1141/0/underline_position = 0.0
+cache/0/1141/0/underline_thickness = 0.0
+cache/0/1141/0/scale = 1.0
+cache/0/1016/0/ascent = 0.0
+cache/0/1016/0/descent = 0.0
+cache/0/1016/0/underline_position = 0.0
+cache/0/1016/0/underline_thickness = 0.0
+cache/0/1016/0/scale = 1.0
+cache/0/1011/0/ascent = 0.0
+cache/0/1011/0/descent = 0.0
+cache/0/1011/0/underline_position = 0.0
+cache/0/1011/0/underline_thickness = 0.0
+cache/0/1011/0/scale = 1.0
+cache/0/961/0/ascent = 0.0
+cache/0/961/0/descent = 0.0
+cache/0/961/0/underline_position = 0.0
+cache/0/961/0/underline_thickness = 0.0
+cache/0/961/0/scale = 1.0
+cache/0/776/0/ascent = 0.0
+cache/0/776/0/descent = 0.0
+cache/0/776/0/underline_position = 0.0
+cache/0/776/0/underline_thickness = 0.0
+cache/0/776/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+cache/0/36/0/ascent = 0.0
+cache/0/36/0/descent = 0.0
+cache/0/36/0/underline_position = 0.0
+cache/0/36/0/underline_thickness = 0.0
+cache/0/36/0/scale = 1.0
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+cache/0/46/0/ascent = 0.0
+cache/0/46/0/descent = 0.0
+cache/0/46/0/underline_position = 0.0
+cache/0/46/0/underline_thickness = 0.0
+cache/0/46/0/scale = 1.0
+cache/0/56/0/ascent = 0.0
+cache/0/56/0/descent = 0.0
+cache/0/56/0/underline_position = 0.0
+cache/0/56/0/underline_thickness = 0.0
+cache/0/56/0/scale = 1.0
+cache/0/66/0/ascent = 0.0
+cache/0/66/0/descent = 0.0
+cache/0/66/0/underline_position = 0.0
+cache/0/66/0/underline_thickness = 0.0
+cache/0/66/0/scale = 1.0
+cache/0/71/0/ascent = 0.0
+cache/0/71/0/descent = 0.0
+cache/0/71/0/underline_position = 0.0
+cache/0/71/0/underline_thickness = 0.0
+cache/0/71/0/scale = 1.0
 
 [sub_resource type="Theme" id="Theme_k8t3u"]
 Label/colors/font_color = Color(1, 1, 1, 1)
@@ -275,6 +550,10 @@ Label/fonts/font = SubResource("FontFile_856a8")
 
 [sub_resource type="Theme" id="Theme_70clx"]
 default_font_size = 60
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xb6hi"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/dilly.png-fc9f6bb31f623b157520eeb5ab24b8a3.s3tc.ctex"
 
 [node name="Root" type="Node3D"]
 
@@ -408,7 +687,99 @@ grow_vertical = 0
 theme = SubResource("Theme_70clx")
 text = "Chat"
 
+[node name="Dialogue" type="Control" parent="UI" node_paths=PackedStringArray("content", "dialogue_manager")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_dd1ya")
+content = NodePath("Text")
+dialogue_file = ExtResource("6_umta2")
+dialogue_manager = NodePath("../DialogueManager")
+
+[node name="Bg" type="NinePatchRect" parent="UI/Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.66
+anchor_right = 0.98
+anchor_bottom = 0.971
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_8bmym")
+region_rect = Rect2(16, 8, 174.158, 184)
+patch_margin_left = 49
+patch_margin_top = 95
+patch_margin_right = 49
+patch_margin_bottom = 49
+
+[node name="Text" type="RichTextLabel" parent="UI/Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.705
+anchor_right = 0.95
+anchor_bottom = 0.932
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 5
+theme_override_font_sizes/normal_font_size = 30
+text = "sdjflksjdflkajsdfkjasl;djfkajsdfasdfasdfdfffffffffffffffffff
+fdkfjdf
+dfkjsadlkfjaskldjfjkjkjkjkjkjkjkjkjkdfjkdjfkdjflkdsjfkdf"
+
+[node name="NameBg" type="NinePatchRect" parent="UI/Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -260.0
+offset_right = 257.0
+offset_bottom = -201.0
+grow_vertical = 0
+texture = ExtResource("5_8bmym")
+
+[node name="Nametag" type="RichTextLabel" parent="UI/Dialogue"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.17
+anchor_bottom = 0.091
+offset_left = 96.0
+offset_top = 403.0
+offset_right = 60.0
+offset_bottom = 388.0
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 25
+text = "Name Here"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueManager" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_dynvb")
+
 [node name="NPCs" type="Node3D" parent="."]
 
 [node name="NPC" parent="NPCs" instance=ExtResource("5_jvqy5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.384, 1.24, 0)
+character_name = "Dilly"
+
+[node name="Sprite3D" parent="NPCs/NPC" index="1"]
+texture = SubResource("CompressedTexture2D_xb6hi")
+
+[node name="NPC2" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.74362, 1.49026, 3.278)
+character_name = "Soups"
+
+[node name="Sprite3D" parent="NPCs/NPC2" index="1"]
+texture = ExtResource("9_fo0y5")
+
+[editable path="NPCs/NPC"]
+[editable path="NPCs/NPC2"]

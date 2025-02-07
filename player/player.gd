@@ -64,6 +64,8 @@ func _physics_process(delta: float) -> void:
 				# send signal opening_door(thing)
 				var destination = selected_thing.on_interact()
 				teleport(destination)
+			elif selected_thing.is_in_group("NPC"):
+				selected_thing.on_interact()
 	
 	
 	if Input.is_action_just_pressed("Show Cursor"):
