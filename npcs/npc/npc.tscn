@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmkvgirxhcmku"]
+
+[ext_resource type="Script" path="res://npcs/npc/npc.gd" id="1_2od60"]
+[ext_resource type="Texture2D" uid="uid://c8ul56kl3n4fw" path="res://npcs/npc/dilly.png" id="2_2mfud"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1ql4"]
+height = 2.41206
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w66xb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_41yn7"]
+material = SubResource("StandardMaterial3D_w66xb")
+orientation = 2
+
+[node name="NPC" type="CharacterBody3D"]
+script = ExtResource("1_2od60")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_q1ql4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_41yn7")
+skeleton = NodePath("../..")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.003
+billboard = 2
+texture = ExtResource("2_2mfud")

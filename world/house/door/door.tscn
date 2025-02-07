@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cb3bhghcaxos0"]
 
-[ext_resource type="Script" path="res://door.gd" id="1_dvfwg"]
+[ext_resource type="Script" path="res://world/house/door/door.gd" id="1_dvfwg"]
 [ext_resource type="Shape3D" uid="uid://bbwvy5i1dfs32" path="res://world/house/door/doorShape.tres" id="2_eqexe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2u3pd"]

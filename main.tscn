@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=17 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://world/house/door/door.tscn" id="1_me5c6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
 [ext_resource type="Texture2D" uid="uid://6w3xg78m7scg" path="res://ui/e.png" id="4_ldyvo"]
+[ext_resource type="PackedScene" uid="uid://cmkvgirxhcmku" path="res://npcs/npc/npc.tscn" id="5_jvqy5"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
 
@@ -326,7 +327,7 @@ destination = NodePath("../../House/DoorRange")
 environment = ExtResource("2_5gfh0")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view", "interact_ray")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19895, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 0)
 script = ExtResource("1_rwvyv")
 cam_arm = NodePath("1stPersonCamArm")
 player_view = NodePath("1stPersonCamArm/1stPersonCam")
@@ -406,3 +407,8 @@ grow_horizontal = 0
 grow_vertical = 0
 theme = SubResource("Theme_70clx")
 text = "Chat"
+
+[node name="NPCs" type="Node3D" parent="."]
+
+[node name="NPC" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.384, 1.24, 0)
