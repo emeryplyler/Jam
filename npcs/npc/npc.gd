@@ -2,15 +2,19 @@ extends CharacterBody3D
 
 @export var character_name: String
 
-var ui: Control
-var dialogue_manager: Control
-var line_number: int
+var ui: Control # interaction icon
+var dialogue_manager: Control # this is for sending signals to the dialogue script
+var dialogue_script: Control # this is for getting the number of lines
+var line_number: int # index of line that the character has just said
+var num_of_lines: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ui = get_tree().root.get_node("Root/UI/E")
 	dialogue_manager = get_tree().root.get_node("Root/UI/DialogueManager")
-	line_number = 0
+	dialogue_script = get_tree().root.get_node("Root/UI/Dialogue")
+	line_number = -1
+	num_of_lines = dialogue_script.get_num_of_lines(character_name)
 
 
 func _physics_process(delta: float) -> void:
@@ -21,7 +25,7 @@ func _physics_process(delta: float) -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -36,4 +40,6 @@ func unhighlight():
 
 
 func on_interact():
-	dialogue_manager.emit_signal("npc_talking", character_name, line_number)
+	if line_number < num_of_lines:
+		line_number += 1
+	dialogue_manager.npc_talking.emit(character_name, line_number)

@@ -14,6 +14,7 @@ var line_num
 var talk_timer: int
 var talk_timer_max: int
 var talk_timer_active: bool
+var showing_dialogue: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,14 +23,15 @@ func _ready() -> void:
 	talk_timer = 0
 	talk_timer_max = 2
 	talk_timer_active = true
+	showing_dialogue = false
 	
 	load_text_file()
-	dialogue_manager.npc_talking.connect(set_speaker.bind(current_speaker, line_num))
+	dialogue_manager.npc_talking.connect(set_speaker)
 	
 	# debug
-	var timer = get_tree().create_timer(3)
-	await(timer.timeout)
-	update_text("Meow!{p=0.5} Meow meow meow meow")
+	#var timer = get_tree().create_timer(3)
+	#await(timer.timeout)
+	#update_text("Meow!{p=0.5} Meow meow meow meow")
 
 func load_text_file():
 	var file = FileAccess.open(dialogue_file.resource_path, FileAccess.READ)
@@ -39,7 +41,7 @@ func load_text_file():
 		print("Error: couldn't load dialogue text file")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if talk_timer_active:
 		talk_timer += 1
 		if talk_timer >= talk_timer_max:
@@ -49,7 +51,11 @@ func _process(delta: float) -> void:
 func set_speaker(speaker, line):
 	current_speaker = speaker
 	# display next line for this speaker
-	# increment line num?
+	if line >= len(all_text[speaker]):
+		pass # hide dialogue box
+	else:
+		update_text(all_text[speaker][line])
+	
 
 # loads and prepares the next line
 func update_text(text: String):
@@ -63,3 +69,7 @@ func _on_type_timer_timeout() -> void:
 		content.visible_characters += 1
 	else:
 		talk_timer_active = false
+
+func get_num_of_lines(character_name):
+	var all_lines = all_text[character_name]
+	return len(all_lines)
