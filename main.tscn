@@ -687,7 +687,7 @@ grow_vertical = 0
 theme = SubResource("Theme_70clx")
 text = "Chat"
 
-[node name="Dialogue" type="Control" parent="UI" node_paths=PackedStringArray("content", "dialogue_manager")]
+[node name="Dialogue" type="Control" parent="UI" node_paths=PackedStringArray("content", "nametag", "dialogue_manager")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -696,6 +696,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_dd1ya")
 content = NodePath("Text")
+nametag = NodePath("Nametag")
 dialogue_file = ExtResource("6_umta2")
 dialogue_manager = NodePath("../DialogueManager")
 

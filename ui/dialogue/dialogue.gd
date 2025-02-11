@@ -1,6 +1,7 @@
 extends Control
 
 @export var content: RichTextLabel
+@export var nametag: RichTextLabel
 @export var pause_timer: Timer
 
 @export var dialogue_file: JSON
@@ -60,6 +61,7 @@ func set_speaker(speaker, line):
 func update_text(text: String):
 	content.text = text
 	content.visible_characters = 0
+	nametag.text = current_speaker
 	talk_timer_active = true
 
 func start_dialogue():
