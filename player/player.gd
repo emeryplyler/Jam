@@ -11,6 +11,9 @@ const raycast_length = 1000
 @export var interact_range: Area3D
 @export var interact_ray: RayCast3D
 
+var talking: bool = false
+var talking_to
+
 var things_in_range = [] # this is updated whenever things enter InteractRange using signals
 var selected_thing
 
@@ -20,6 +23,7 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	print(talking, talking_to)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -28,44 +32,41 @@ func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		#velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	# Get the input direction and handle the movement/deceleration
+	# can't move if talking maybe
+	# TODO: change later?
+	if not talking_to:
+		var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	
 	# what is player looking at?
-	# do raycast
-	#if interact_ray.is_colliding():
-	var target = interact_ray.get_collider()
-	
-	if target != selected_thing:
-		if target:
-			if target.is_in_group("Interactable"):
-				target.highlight()
-		if selected_thing:
-			if selected_thing.is_in_group("Interactable"):
-				selected_thing.unhighlight()
-	selected_thing = target
-	
-	
+	raycasting()
 	
 	# Handle interaction button
 	if Input.is_action_just_pressed("Interact"):
-		# raycast
-		if selected_thing:
-			if selected_thing.is_in_group("Door"):
-				# send signal opening_door(thing)
-				var destination = selected_thing.on_interact()
-				teleport(destination)
-			elif selected_thing.is_in_group("NPC"):
-				selected_thing.on_interact()
+		if talking:
+			# player is talking to npc, continue dialogue
+			if not talking_to.on_interact():
+				talking = false
+				talking_to = null
+		else:
+			# selected thing comes from the raycast function
+			if selected_thing:
+				if selected_thing.is_in_group("Door"):
+					# send signal opening_door(thing)
+					var destination = selected_thing.on_interact()
+					teleport(destination)
+				elif selected_thing.is_in_group("NPC"):
+					selected_thing.start_talking()
+					talking_to = selected_thing
+					talking = true # enter talking state
 	
 	
 	if Input.is_action_just_pressed("Show Cursor"):
@@ -84,6 +85,18 @@ func _input(event: InputEvent) -> void:
 		
 		cam_arm.rotation.x -= event.relative.y * mouse_sens
 		cam_arm.rotation.x = clamp(cam_arm.rotation.x, deg_to_rad(-90), deg_to_rad(90))
+
+func raycasting():
+	var target = interact_ray.get_collider()
+	
+	if target != selected_thing:
+		if target:
+			if target.is_in_group("Interactable"):
+				target.highlight()
+		if selected_thing:
+			if selected_thing.is_in_group("Interactable"):
+				selected_thing.unhighlight()
+	selected_thing = target
 
 
 # used for moving the player between doors

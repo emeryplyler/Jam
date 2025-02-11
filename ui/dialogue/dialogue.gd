@@ -22,16 +22,12 @@ func _ready() -> void:
 	content.set_use_bbcode(true)
 	talk_timer = 0
 	talk_timer_max = 2
-	talk_timer_active = true
+	talk_timer_active = false
 	showing_dialogue = false
 	
 	load_text_file()
 	dialogue_manager.npc_talking.connect(set_speaker)
-	
-	# debug
-	#var timer = get_tree().create_timer(3)
-	#await(timer.timeout)
-	#update_text("Meow!{p=0.5} Meow meow meow meow")
+	set_visible(false)
 
 func load_text_file():
 	var file = FileAccess.open(dialogue_file.resource_path, FileAccess.READ)
@@ -48,20 +44,31 @@ func _process(_delta: float) -> void:
 			talk_timer = 0
 			_on_type_timer_timeout()
 
+# this gets called every time player interacts with npc
 func set_speaker(speaker, line):
 	current_speaker = speaker
 	# display next line for this speaker
 	if line >= len(all_text[speaker]):
-		pass # hide dialogue box
+		# character done speaking
+		finish_dialogue()
 	else:
 		update_text(all_text[speaker][line])
-	
+
+
 
 # loads and prepares the next line
 func update_text(text: String):
 	content.text = text
 	content.visible_characters = 0
 	talk_timer_active = true
+
+func start_dialogue():
+	set_visible(true)
+	
+func finish_dialogue():
+	set_visible(false)
+	
+
 
 # displays the currently selected text (words inside content.text rn)
 func _on_type_timer_timeout() -> void:

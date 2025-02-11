@@ -38,8 +38,22 @@ func unhighlight():
 	ui.set_visible(false)
 	ui.get_node("Chat").set_visible(false)
 
-
+# is called whenever the player interacts with npc
+# returns whether npc is still talking for the player script
 func on_interact():
-	if line_number < num_of_lines:
+	if line_number < num_of_lines - 1:
 		line_number += 1
-	dialogue_manager.npc_talking.emit(character_name, line_number)
+		dialogue_manager.npc_talking.emit(character_name, line_number)
+		return true
+	else:
+		stop_talking()
+		return false
+
+# called by player when the npc first starts talking
+func start_talking():
+	dialogue_script.start_dialogue()
+	on_interact()
+
+
+func stop_talking():
+	dialogue_script.finish_dialogue()
