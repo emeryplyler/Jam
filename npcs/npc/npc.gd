@@ -57,3 +57,4 @@ func start_talking():
 
 func stop_talking():
 	dialogue_script.finish_dialogue()
+	line_number -= 1 # reset line number to the last line character said
