@@ -8,19 +8,23 @@ const raycast_length = 1000
 
 @export var cam_arm: Node3D
 @export var player_view: Camera3D
-@export var interact_range: Area3D
 @export var interact_ray: RayCast3D
+@export var photo_album: Control
+@export var camera_overlay: Control
 
 var talking: bool = false
 var talking_to
+var taking_photo: bool = false
 
 var things_in_range = [] # this is updated whenever things enter InteractRange using signals
 var selected_thing
 
+signal snap
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	photo_album.set_visible(false)
+	camera_overlay.set_visible(false)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -67,7 +71,24 @@ func _physics_process(delta: float) -> void:
 					talking_to = selected_thing
 					talking = true # enter talking state
 	
+	if Input.is_action_just_pressed("Open Photos"):
+		photo_album.set_visible(not photo_album.is_visible())
+		# toggle cursor
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		elif Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	if Input.is_action_just_pressed("Toggle Camera"):
+		var camera_on = camera_overlay.is_visible() # not camera_on is the new value after pressing the button
+		camera_overlay.set_visible(not camera_on)
+		taking_photo = not camera_on
+	
+	if Input.is_action_just_pressed("Click"):
+		if taking_photo:
+			snap.emit()
+	
+	# TODO: show cursor button is only for debug
 	if Input.is_action_just_pressed("Show Cursor"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

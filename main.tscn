@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=29 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://world/house/door/door.tscn" id="1_me5c6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://cmkvgirxhcmku" path="res://npcs/npc/npc.tscn" id="5_jvqy5"]
 [ext_resource type="JSON" path="res://ui/dialogue/dialogue.json" id="6_umta2"]
 [ext_resource type="Script" path="res://dialogue_manager.gd" id="8_dynvb"]
+[ext_resource type="Texture2D" path="res://player/photos/examplephoto.png" id="9_ce126"]
 [ext_resource type="Texture2D" uid="uid://hlq8syesxqco" path="res://npcs/npc/soups.png" id="9_fo0y5"]
+[ext_resource type="Script" path="res://photo_cam.gd" id="9_jf1e5"]
+[ext_resource type="Texture2D" uid="uid://bwedkfebuguf7" path="res://ui/camera/cameraoverlay.png" id="10_q0soi"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
 
@@ -31,6 +34,9 @@ material = SubResource("StandardMaterial3D_si04p")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_46s2m"]
 
 [sub_resource type="FontFile" id="FontFile_856a8"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -551,6 +557,106 @@ Label/fonts/font = SubResource("FontFile_856a8")
 [sub_resource type="Theme" id="Theme_70clx"]
 default_font_size = 60
 
+[sub_resource type="Animation" id="Animation_78ki5"]
+resource_name = "flash"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.333333, 0.666667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flash:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.333333, 0.666667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flash:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.333333, 0.666667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flash:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.411765, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.333333, 0.666667)
+}
+
+[sub_resource type="Animation" id="Animation_l0sfw"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Flash:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Flash:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Flash:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Flash:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.0005, 0, 0.0005, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smavo"]
+_data = {
+"RESET": SubResource("Animation_l0sfw"),
+"flash": SubResource("Animation_78ki5")
+}
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xb6hi"]
 resource_local_to_scene = true
 load_path = "res://.godot/imported/dilly.png-fc9f6bb31f623b157520eeb5ab24b8a3.s3tc.ctex"
@@ -605,25 +711,27 @@ destination = NodePath("../../House/DoorRange")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource("2_5gfh0")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view", "interact_ray")]
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view", "interact_ray", "photo_album", "camera_overlay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 0)
 script = ExtResource("1_rwvyv")
 cam_arm = NodePath("1stPersonCamArm")
 player_view = NodePath("1stPersonCamArm/1stPersonCam")
 interact_ray = NodePath("1stPersonCamArm/RayCast3D")
+photo_album = NodePath("../UI/PhotoAlbum")
+camera_overlay = NodePath("../UI/CameraOverlay")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_tijw1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_46s2m")
 
-[node name="1stPersonCamArm" type="Node3D" parent="CharacterBody3D"]
+[node name="1stPersonCamArm" type="Node3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
-[node name="1stPersonCam" type="Camera3D" parent="CharacterBody3D/1stPersonCamArm"]
+[node name="1stPersonCam" type="Camera3D" parent="Player/1stPersonCamArm"]
 
-[node name="RayCast3D" type="RayCast3D" parent="CharacterBody3D/1stPersonCamArm"]
+[node name="RayCast3D" type="RayCast3D" parent="Player/1stPersonCamArm"]
 target_position = Vector3(0, 0, -3.2)
 collide_with_areas = true
 
@@ -765,6 +873,94 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_dynvb")
+
+[node name="PhotoAlbum" type="Control" parent="UI" node_paths=PackedStringArray("player", "ui", "flash")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_jf1e5")
+player = NodePath("../../Player")
+ui = NodePath("..")
+flash = NodePath("../CameraOverlay/CameraFlash")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/PhotoAlbum"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/PhotoAlbum/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="UI/PhotoAlbum/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/PhotoAlbum/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("9_ce126")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="UI/PhotoAlbum/ScrollContainer/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("9_ce126")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CameraOverlay" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/CameraOverlay"]
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -320.0
+offset_right = 249.0
+offset_bottom = 321.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_q0soi")
+expand_mode = 1
+
+[node name="Flash" type="ColorRect" parent="UI/CameraOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="CameraFlash" type="AnimationPlayer" parent="UI/CameraOverlay"]
+libraries = {
+"": SubResource("AnimationLibrary_smavo")
+}
 
 [node name="NPCs" type="Node3D" parent="."]
 
