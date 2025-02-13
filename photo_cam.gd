@@ -3,6 +3,9 @@ extends Control
 @export var player: CharacterBody3D
 @export var ui: Control # for hiding UI during picture taking
 @export var flash: AnimationPlayer
+@export var gallery_pic_scene: PackedScene
+
+var grid
 
 var photos_taken = 0
 var fileName = "player_photo"
@@ -16,6 +19,8 @@ func _ready() -> void:
 	# clear photo folder
 	for file in DirAccess.get_files_at("res://player/photos/"): # hopefully this only happens when the game opens
 		dir.remove(file)
+	
+	grid = get_node("ScrollContainer/MarginContainer/GridContainer")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,4 +44,12 @@ func on_snap():
 	ui.set_visible(true)
 
 func add_to_gallery(imagePath):
-	pass
+	var image = Image.new()
+	image.load(imagePath)
+	var texture = ImageTexture.create_from_image(image)
+	var new_pic = gallery_pic_scene.instantiate()
+	#print("Path: ", imagePath, " Image found: ", image)
+	#new_pic.texture = load(imagePath)
+	new_pic.texture = texture
+	new_pic.size
+	grid.add_child(new_pic)

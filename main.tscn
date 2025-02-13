@@ -9,9 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://cmkvgirxhcmku" path="res://npcs/npc/npc.tscn" id="5_jvqy5"]
 [ext_resource type="JSON" path="res://ui/dialogue/dialogue.json" id="6_umta2"]
 [ext_resource type="Script" path="res://dialogue_manager.gd" id="8_dynvb"]
-[ext_resource type="Texture2D" path="res://player/photos/examplephoto.png" id="9_ce126"]
 [ext_resource type="Texture2D" uid="uid://hlq8syesxqco" path="res://npcs/npc/soups.png" id="9_fo0y5"]
 [ext_resource type="Script" path="res://photo_cam.gd" id="9_jf1e5"]
+[ext_resource type="PackedScene" uid="uid://ci4bsywl50fyx" path="res://ui/camera/gallery_pic.tscn" id="10_07whq"]
 [ext_resource type="Texture2D" uid="uid://bwedkfebuguf7" path="res://ui/camera/cameraoverlay.png" id="10_q0soi"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
@@ -885,6 +885,7 @@ script = ExtResource("9_jf1e5")
 player = NodePath("../../Player")
 ui = NodePath("..")
 flash = NodePath("../CameraOverlay/CameraFlash")
+gallery_pic_scene = ExtResource("10_07whq")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/PhotoAlbum"]
 layout_mode = 1
@@ -909,19 +910,21 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 5
 
-[node name="TextureRect" type="TextureRect" parent="UI/PhotoAlbum/ScrollContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-texture = ExtResource("9_ce126")
+[node name="ViewingPic" type="TextureRect" parent="UI/PhotoAlbum"]
+custom_minimum_size = Vector2(1036, 583)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -518.0
+offset_top = -291.5
+offset_right = 518.0
+offset_bottom = 291.5
+grow_horizontal = 2
+grow_vertical = 2
 expand_mode = 1
-stretch_mode = 5
-
-[node name="TextureRect2" type="TextureRect" parent="UI/PhotoAlbum/ScrollContainer/MarginContainer/GridContainer"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-texture = ExtResource("9_ce126")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="CameraOverlay" type="Control" parent="UI"]
 layout_mode = 1
