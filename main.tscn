@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=33 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
@@ -13,8 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://ci4bsywl50fyx" path="res://ui/camera/gallery_pic.tscn" id="10_07whq"]
 [ext_resource type="Texture2D" uid="uid://bwedkfebuguf7" path="res://ui/camera/cameraoverlay.png" id="10_q0soi"]
 [ext_resource type="Script" path="res://quests.gd" id="11_tpq2c"]
+[ext_resource type="Script" path="res://quest_1.gd" id="12_oaaxh"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_gg674"]
+size = Vector3(200, 0, 200)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fhoqf"]
 size = Vector2(200, 200)
@@ -677,7 +679,7 @@ load_path = "res://.godot/imported/dilly.png-fc9f6bb31f623b157520eeb5ab24b8a3.s3
 [node name="Ground" type="StaticBody3D" parent="World"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground"]
-shape = SubResource("WorldBoundaryShape3D_65nkc")
+shape = SubResource("BoxShape3D_gg674")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ground"]
 mesh = SubResource("PlaneMesh_fhoqf")
@@ -1075,11 +1077,17 @@ libraries = {
 "": SubResource("AnimationLibrary_smavo")
 }
 
-[node name="Quests" type="Control" parent="UI"]
-anchors_preset = 0
+[node name="Quests" type="Control" parent="UI" node_paths=PackedStringArray("quest_ui", "quest1")]
+layout_mode = 1
+anchor_left = 0.0138889
+anchor_top = 0.0169753
+anchor_right = 0.0138889
+anchor_bottom = 0.0169753
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("11_tpq2c")
+quest_ui = NodePath("QuestText")
+quest1 = NodePath("Quest1")
 
 [node name="QuestText" type="RichTextLabel" parent="UI/Quests"]
 layout_mode = 0
@@ -1087,6 +1095,9 @@ offset_right = 406.0
 offset_bottom = 58.0
 text = "Example quest: take a picture of your friends! 
 0/5"
+
+[node name="Quest1" type="Node" parent="UI/Quests"]
+script = ExtResource("12_oaaxh")
 
 [node name="NPCs" type="Node3D" parent="."]
 
@@ -1098,10 +1109,11 @@ character_name = "Howl"
 texture = SubResource("CompressedTexture2D_xb6hi")
 
 [node name="Howl2" parent="NPCs" instance=ExtResource("5_jvqy5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0161474, -14.8155, -2.14653)
-character_name = "Howl"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0902141, -14.453, -1.97918)
+character_name = "Howl2"
 
 [node name="Sprite3D" parent="NPCs/Howl2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0121098, 0.0212572)
 texture = SubResource("CompressedTexture2D_xb6hi")
 
 [node name="Bunsie" parent="NPCs" instance=ExtResource("5_jvqy5")]
