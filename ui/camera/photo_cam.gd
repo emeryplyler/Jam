@@ -10,6 +10,8 @@ var grid
 var photos_taken = 0
 var fileName = "player_photo"
 
+signal has_photo_taken(character)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.snap.connect(on_snap)
@@ -42,6 +44,11 @@ func on_snap():
 	
 	player.camera_overlay.set_visible(true) # put them back
 	ui.set_visible(true)
+	
+	# if there's a character in range, record that in the quests
+	if player.selected_thing:
+		if player.selected_thing.is_in_group("NPC"):
+			has_photo_taken.emit(player.selected_thing.character_name)
 
 func add_to_gallery(imagePath):
 	var image = Image.new()
