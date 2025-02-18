@@ -1,6 +1,5 @@
-[gd_scene load_steps=29 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=32 format=3 uid="uid://c3scy7pclrd8h"]
 
-[ext_resource type="PackedScene" uid="uid://cb3bhghcaxos0" path="res://world/house/door/door.tscn" id="1_me5c6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
 [ext_resource type="Texture2D" uid="uid://6w3xg78m7scg" path="res://ui/e.png" id="4_ldyvo"]
@@ -13,13 +12,12 @@
 [ext_resource type="Script" path="res://ui/camera/photo_cam.gd" id="9_jf1e5"]
 [ext_resource type="PackedScene" uid="uid://ci4bsywl50fyx" path="res://ui/camera/gallery_pic.tscn" id="10_07whq"]
 [ext_resource type="Texture2D" uid="uid://bwedkfebuguf7" path="res://ui/camera/cameraoverlay.png" id="10_q0soi"]
+[ext_resource type="Script" path="res://quests.gd" id="11_tpq2c"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_65nkc"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fhoqf"]
 size = Vector2(200, 200)
-
-[sub_resource type="PrismMesh" id="PrismMesh_6wxw5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_si04p"]
 albedo_color = Color(0.4836, 0.84072, 0.93, 1)
@@ -28,6 +26,17 @@ albedo_color = Color(0.4836, 0.84072, 0.93, 1)
 material = SubResource("StandardMaterial3D_si04p")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_llvgx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6jtcq"]
+size = Vector3(226.956, 78.0707, 4.70453)
+
+[sub_resource type="PrismMesh" id="PrismMesh_6wxw5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_w7sr6"]
+size = Vector3(7.5, 0.3, 7.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d4opq"]
+size = Vector3(7.5, 0.3, 7.5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tijw1"]
 
@@ -678,23 +687,12 @@ transform = Transform3D(0.5, 2.58096e-08, 0.866025, -0.866025, 1.49012e-08, 0.5,
 light_energy = 2.0
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61072, -11.3366)
-mesh = SubResource("PrismMesh_6wxw5")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="World"]
-transform = Transform3D(0.831062, 0, -0.55618, 0, 1, 0, 0.55618, 0, 0.831062, 3.6685, 0.354627, -8.0724)
-mesh = SubResource("PrismMesh_6wxw5")
-
 [node name="House" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.281, 1.9802, -9.77067)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.58986, 1.9802, -10.833)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/House"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 mesh = SubResource("BoxMesh_7eftf")
-
-[node name="DoorRange" parent="World/House" node_paths=PackedStringArray("destination") instance=ExtResource("1_me5c6")]
-destination = NodePath("../../House2/DoorRange")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="World/House"]
 
@@ -702,14 +700,126 @@ destination = NodePath("../../House2/DoorRange")
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 shape = SubResource("BoxShape3D_llvgx")
 
-[node name="House2" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3521, 2.29985, -4.82508)
-
-[node name="DoorRange" parent="World/House2" node_paths=PackedStringArray("destination") instance=ExtResource("1_me5c6")]
-destination = NodePath("../../House/DoorRange")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
 environment = ExtResource("2_5gfh0")
+
+[node name="InvisibleWorldBorder" type="Node3D" parent="World"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="World/InvisibleWorldBorder"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/InvisibleWorldBorder/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39218, 34.7155, 99.8934)
+shape = SubResource("BoxShape3D_6jtcq")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="World/InvisibleWorldBorder"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/InvisibleWorldBorder/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39218, 34.7155, -100.764)
+shape = SubResource("BoxShape3D_6jtcq")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="World/InvisibleWorldBorder"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/InvisibleWorldBorder/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39218, 34.7155, -100.764)
+shape = SubResource("BoxShape3D_6jtcq")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="World/InvisibleWorldBorder"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/InvisibleWorldBorder/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39218, 34.7155, -100.764)
+shape = SubResource("BoxShape3D_6jtcq")
+
+[node name="PointsOfInterest" type="Node3D" parent="World"]
+
+[node name="Pond" type="MeshInstance3D" parent="World/PointsOfInterest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.4495, 1.61072, -45.8212)
+mesh = SubResource("PrismMesh_6wxw5")
+skeleton = NodePath("../..")
+
+[node name="Log" type="MeshInstance3D" parent="World/PointsOfInterest"]
+transform = Transform3D(0.831062, 0, -0.55618, 0, 1, 0, 0.55618, 0, 0.831062, 68.5807, 0.354627, 66.1709)
+mesh = SubResource("PrismMesh_6wxw5")
+skeleton = NodePath("../..")
+
+[node name="Butterflies" type="MeshInstance3D" parent="World/PointsOfInterest"]
+transform = Transform3D(0.831062, 0, -0.55618, 0, 1, 0, 0.55618, 0, 0.831062, -65.7064, 0.354627, 30.8749)
+mesh = SubResource("PrismMesh_6wxw5")
+skeleton = NodePath("../..")
+
+[node name="Flowers" type="MeshInstance3D" parent="World/PointsOfInterest"]
+transform = Transform3D(0.831062, 0, -0.55618, 0, 1, 0, 0.55618, 0, 0.831062, -56.781, 0.354627, -58.7851)
+mesh = SubResource("PrismMesh_6wxw5")
+skeleton = NodePath("../..")
+
+[node name="Basement" type="Node3D" parent="World/PointsOfInterest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -14.4272, 0)
+
+[node name="Floor" type="StaticBody3D" parent="World/PointsOfInterest/Basement"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.74426, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/PointsOfInterest/Basement/Floor"]
+mesh = SubResource("BoxMesh_w7sr6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PointsOfInterest/Basement/Floor"]
+shape = SubResource("BoxShape3D_d4opq")
+
+[node name="Ceiling" type="StaticBody3D" parent="World/PointsOfInterest/Basement"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7745, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/PointsOfInterest/Basement/Ceiling"]
+mesh = SubResource("BoxMesh_w7sr6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PointsOfInterest/Basement/Ceiling"]
+shape = SubResource("BoxShape3D_d4opq")
+
+[node name="Floor2" type="StaticBody3D" parent="World/PointsOfInterest/Basement"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -3.66921, -0.853043, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/PointsOfInterest/Basement/Floor2"]
+mesh = SubResource("BoxMesh_w7sr6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PointsOfInterest/Basement/Floor2"]
+shape = SubResource("BoxShape3D_d4opq")
+
+[node name="Floor4" type="StaticBody3D" parent="World/PointsOfInterest/Basement"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3.62012, -0.853043, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/PointsOfInterest/Basement/Floor4"]
+mesh = SubResource("BoxMesh_w7sr6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PointsOfInterest/Basement/Floor4"]
+shape = SubResource("BoxShape3D_d4opq")
+
+[node name="Floor5" type="StaticBody3D" parent="World/PointsOfInterest/Basement"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.00632882, -0.853043, -3.52811)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/PointsOfInterest/Basement/Floor5"]
+mesh = SubResource("BoxMesh_w7sr6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PointsOfInterest/Basement/Floor5"]
+shape = SubResource("BoxShape3D_d4opq")
+
+[node name="Floor6" type="StaticBody3D" parent="World/PointsOfInterest/Basement"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, -0.00632882, -0.853043, 3.44624)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/PointsOfInterest/Basement/Floor6"]
+mesh = SubResource("BoxMesh_w7sr6")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World/PointsOfInterest/Basement/Floor6"]
+shape = SubResource("BoxShape3D_d4opq")
+
+[node name="PlayerSpot" type="Node3D" parent="World/PointsOfInterest/Basement"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.629048, 1.69071)
+
+[node name="Trees" type="Node3D" parent="World"]
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view", "interact_ray", "photo_album", "camera_overlay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 0)
@@ -965,21 +1075,66 @@ libraries = {
 "": SubResource("AnimationLibrary_smavo")
 }
 
+[node name="Quests" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_tpq2c")
+
+[node name="QuestText" type="RichTextLabel" parent="UI/Quests"]
+layout_mode = 0
+offset_right = 406.0
+offset_bottom = 58.0
+text = "Example quest: take a picture of your friends! 
+0/5"
+
 [node name="NPCs" type="Node3D" parent="."]
 
-[node name="NPC" parent="NPCs" instance=ExtResource("5_jvqy5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.384, 1.24, 0)
-character_name = "Dilly"
+[node name="Howl" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.881648, 1.24, -6.38444)
+character_name = "Howl"
 
-[node name="Sprite3D" parent="NPCs/NPC" index="1"]
+[node name="Sprite3D" parent="NPCs/Howl" index="1"]
 texture = SubResource("CompressedTexture2D_xb6hi")
 
-[node name="NPC2" parent="NPCs" instance=ExtResource("5_jvqy5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.74362, 1.49026, 3.278)
-character_name = "Soups"
+[node name="Howl2" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0161474, -14.8155, -2.14653)
+character_name = "Howl"
 
-[node name="Sprite3D" parent="NPCs/NPC2" index="1"]
+[node name="Sprite3D" parent="NPCs/Howl2" index="1"]
+texture = SubResource("CompressedTexture2D_xb6hi")
+
+[node name="Bunsie" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.5413, 1.49026, -51.3244)
+character_name = "Bunsie"
+
+[node name="Sprite3D" parent="NPCs/Bunsie" index="1"]
 texture = ExtResource("9_fo0y5")
 
-[editable path="NPCs/NPC"]
-[editable path="NPCs/NPC2"]
+[node name="Ribberette" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.3748, 1.49026, 29.9453)
+character_name = "Ribberette"
+
+[node name="Sprite3D" parent="NPCs/Ribberette" index="1"]
+texture = ExtResource("9_fo0y5")
+
+[node name="Clawde" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.6043, 1.49026, 64.7102)
+character_name = "Clawde"
+
+[node name="Sprite3D" parent="NPCs/Clawde" index="1"]
+texture = ExtResource("9_fo0y5")
+
+[node name="Kittevieve" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.8863, 1.49026, -48.2287)
+character_name = "Kittevieve"
+
+[node name="Sprite3D" parent="NPCs/Kittevieve" index="1"]
+texture = ExtResource("9_fo0y5")
+
+[editable path="NPCs/Howl"]
+[editable path="NPCs/Howl2"]
+[editable path="NPCs/Bunsie"]
+[editable path="NPCs/Ribberette"]
+[editable path="NPCs/Clawde"]
+[editable path="NPCs/Kittevieve"]

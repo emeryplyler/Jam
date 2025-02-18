@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://ci4bsywl50fyx"]
+[gd_scene load_steps=2 format=3 uid="uid://ci4bsywl50fyx"]
 
-[ext_resource type="Texture2D" uid="uid://dhow70677p7ax" path="res://player_photo0.png" id="1_keb73"]
 [ext_resource type="Script" path="res://ui/camera/gallery_photo.gd" id="2_gvd06"]
 
 [node name="TextureRect" type="TextureRect"]
 custom_minimum_size = Vector2(215, 121)
-texture = ExtResource("1_keb73")
 expand_mode = 2
 stretch_mode = 4
 script = ExtResource("2_gvd06")

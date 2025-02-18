@@ -51,5 +51,5 @@ func add_to_gallery(imagePath):
 	#print("Path: ", imagePath, " Image found: ", image)
 	#new_pic.texture = load(imagePath)
 	new_pic.texture = texture
-	new_pic.size
+	#new_pic.size
 	grid.add_child(new_pic)
