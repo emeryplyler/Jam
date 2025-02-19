@@ -29,12 +29,12 @@ func _ready() -> void:
 
 func check_lines(char_name, block, line):
 	if char_name == "Howl":
-		print("Perceived: %s %d %d %s" % [char_name, block, line, post_tutorial])
+		print("Perceived: %s %d %d" % [char_name, block, line])
 		if block == 0 and not tutorial:
 			if line == 8:
 				tutorialNode.prepQuest()
 				tutorial = true
-		if block == 1 and line == 2 and not pictures_quest_started:
+		if block == 1 and line == 3 and not pictures_quest_started:
 			pictures_quest_started = true
 			pictures_quest.prepQuest()
 		if pictures_quest_started and not dark_pictures_quest_started:

@@ -48,20 +48,21 @@ func on_interact():
 	if usingRandomBlock and line_number == -1:
 		if not midGame:
 			random_block(2, 4)
-	if block_number >= 6 and block_number <= 8 and line_number < num_of_lines - 1:
+	if block_number >= 6 and block_number <= 8 and line_number == -1:
 		random_block(6, 8)
+	
 	if line_number < num_of_lines - 1:
 		line_number += 1
 		dialogue_manager.npc_talking.emit(character_name, block_number, line_number)
 		return true
 	else:
-		if block_number == 1 and line_number == 2: # ok not proud of this ngl
-			next_block()
+		if block_number == 1 and line_number == 3: # ok not proud of this ngl
+			set_block(4)
 			stop_talking()
 			line_number += 1
 			return false
 		if block_number == 5 and line_number == 7:
-			set_block(8)
+			set_block(8) # start repeating these lines
 			stop_talking()
 			line_number += 1
 			return false

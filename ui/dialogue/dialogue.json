@@ -8,11 +8,12 @@
 			"...",
 			"Oh, \"Friends!\" What a wonderful theme.",
 			"You remember how to use the camera, right?",
-			"Just press the E key, aim, and click! You've got a lovely little photo in your hands.",
+			"Just press the C key, aim, and click! You've got a lovely little photo in your hands.",
 			"Try it out on me, Sunshine!"
 		],
 		[
 			"Hehe, now you have a picture of me!",
+			"And if you want to look at your photos, press F and click one to look at it up close.",
 			"Oh gosh, I wish I had a picture of you, then we could put our pictures together and they could be friends too...",
 			"Ah, anyways, I'll leave you to it, Sunshine! Come back if you want more photos of me."
 		],
@@ -39,8 +40,7 @@
 			"Did you find anyone, Sunshine?"
 		],
 		[
-			"Snap a picture if you see anything peculiar, alright?",
-			"I'll gladly become your own personal detective!"
+			"Snap a picture if you see anything peculiar, alright? I'll gladly become your own personal detective!"
 		],
 		[
 			"I won't let anything happen to you, Sunshine."
@@ -69,12 +69,12 @@
 	"Kittevieve": [
 		["Gah! Almost had one, I think I felt a little nibble!",
 		"It better have been a little nibble, because I want to have a little nibble for myself, mrow!",
-		"I'm soooooo hungry, mrow! I could eat a whole whale, if only I could fish one!"],
-		["I know I just had breakfast, and a snack, and maybe two more after that-"],
-		["-but I just can't help it; a cat's gotta eat!"],
-		["Huh? You want a picture of me fishing, mrow?"],
-		["Go ahead, mrow! Next you can take a picture of me eating the delicious fishies, mrow."],
-		["Be prepared, fishies, for you're going right in my belly, mrow!"]
+		"I'm soooooo hungry, mrow! I could eat a whole whale, if only I could fish one!",
+		"I know I just had breakfast, and a snack, and maybe two more after that-",
+		"-but I just can't help it; a cat's gotta eat!",
+		"Huh? You want a picture of me fishing, mrow?",
+		"Go ahead, mrow! Next you can take a picture of me eating the delicious fishies, mrow.",
+		"Be prepared, fishies, for you're going right in my belly, mrow!"]
 	],
 	"Clawde": [
 		["Zzz... Snore...",
