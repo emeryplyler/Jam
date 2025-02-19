@@ -9,6 +9,7 @@ var block_number: int
 var line_number: int # index of line that the character has just said
 var num_of_lines: int
 var usingRandomBlock = false
+var midGame = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,7 +46,10 @@ func unhighlight():
 # returns whether npc is still talking for the player script
 func on_interact():
 	if usingRandomBlock and line_number == -1:
-		random_block(2, 4)
+		if not midGame:
+			random_block(2, 4)
+	if block_number >= 6 and block_number <= 8 and line_number < num_of_lines - 1:
+		random_block(6, 8)
 	if line_number < num_of_lines - 1:
 		line_number += 1
 		dialogue_manager.npc_talking.emit(character_name, block_number, line_number)
@@ -53,6 +57,11 @@ func on_interact():
 	else:
 		if block_number == 1 and line_number == 2: # ok not proud of this ngl
 			next_block()
+			stop_talking()
+			line_number += 1
+			return false
+		if block_number == 5 and line_number == 7:
+			set_block(8)
 			stop_talking()
 			line_number += 1
 			return false
@@ -83,5 +92,9 @@ func set_block(block_index):
 	line_number = -1
 
 func random_block(rangeMin, rangeMax):
-	block_number = randi_range(rangeMin, rangeMax)
+	#block_number = randi_range(rangeMin, rangeMax)
+	block_number += 1
+	if block_number > rangeMax:
+		block_number = rangeMin
 	line_number = -1
+	num_of_lines = dialogue_script.get_num_of_lines(character_name, block_number)

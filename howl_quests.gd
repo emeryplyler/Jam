@@ -25,6 +25,7 @@ func _ready() -> void:
 	tutorialNode = quests.get_node("Tutorial")
 	tutorialNode.tutorial_done.connect(tutorial_done)
 	pictures_quest = quests.get_node("Quest1")
+	pictures_quest.picture_quest_done.connect(pictures_quest_done)
 
 func check_lines(char_name, block, line):
 	if char_name == "Howl":
@@ -33,7 +34,7 @@ func check_lines(char_name, block, line):
 			if line == 8:
 				tutorialNode.prepQuest()
 				tutorial = true
-		if block == 2 and not pictures_quest_started:
+		if block == 1 and line == 2 and not pictures_quest_started:
 			pictures_quest_started = true
 			pictures_quest.prepQuest()
 		if pictures_quest_started and not dark_pictures_quest_started:
@@ -45,6 +46,10 @@ func check_lines(char_name, block, line):
 
 func tutorial_done():
 	howl_npc.next_block()
+	
+func pictures_quest_done():
+	howl_npc.midGame = true
+	howl_npc.set_block(5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
