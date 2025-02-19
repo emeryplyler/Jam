@@ -30,7 +30,7 @@
 			"You can't find anyone anymore?",
 			"Aww... Don't fret, Sunshine, I'm sure they're around here somewhere.",
 			"I hate seeing you so unhappy, you know.",
-			"If you <i>really</i> want to see your friends...",
+			"If you [i]really[/i] want to see your friends...",
 			"Why don't you try looking for them again?",
 			"Would that make you happy, Sunshine? To see them again?",
 			"I'll let you know if I find anyone..."
@@ -47,23 +47,59 @@
 		]
 	],
 	"Bunsie": [
-		["Hey man",
-		"Mmmmhmmmm",
-		"Pretty much"]
+		["Sigh... Aren't all of these flowers lovely, Hopper?",
+		"Ribberette has the prettiest flowers, though...",
+		"Kittevieve has new plants in her backyard garden, too! I heard she saves them to garnish her dishes...",
+		"Oh, I'd give anything to have a garden as beautiful... Mine will never be as good as everyone else's, Hopper.",
+		"You'd like a picture of me with the flowers?",
+		"Me, Hopper?",
+		"Oh, goodie goodie! Yes, you may take my picture, Hopper!",
+		"Sigh... A garden of flowers, all to myself... Imagine it..."]
 	],
 	"Ribberette": [
-		["Hey man",
-		"Mmmmhmmmm",
-		"Pretty much"]
+		["Good morning, ribbit!",
+		"I'm the best butterfly collector out there, ribbit! I have more butterflies pinned up in my house than anyone else.",
+		"Still, I need more if I'm to win the butterfly-catching championship! There are so many kinds that all belong in my collection, ribbit!",
+		"Whether it's a red one or a blue one, a great tragedy ensues one!",
+		"But it won't be so bad... After all, they'll be the decorations of the world's greatest bug catcher.",
+		"Oh, you'd like to photograph this momentous occasion, ribbit?",
+		"Please, do get my good side... Oh wait, that's every side, ribbit!",
+		"These will look so beautiful up on my wall... Almost as beautiful as me!",]
 	],
 	"Kittevieve": [
-		["Hey man",
-		"Mmmmhmmmm",
-		"Pretty much"]
+		["Gah! Almost had one, I think I felt a little nibble!",
+		"It better have been a little nibble, because I want to have a little nibble for myself, mrow!",
+		"I'm soooooo hungry, mrow! I could eat a whole whale, if only I could fish one!"],
+		["I know I just had breakfast, and a snack, and maybe two more after that-"],
+		["-but I just can't help it; a cat's gotta eat!"],
+		["Huh? You want a picture of me fishing, mrow?"],
+		["Go ahead, mrow! Next you can take a picture of me eating the delicious fishies, mrow."],
+		["Be prepared, fishies, for you're going right in my belly, mrow!"]
 	],
 	"Clawde": [
-		["Hey man",
-		"Mmmmhmmmm",
-		"Pretty much"]
+		["Zzz... Snore...",
+		"Mm... Morning already, Snoozer?",
+		"Zzz... Just five more minutes... Snore...",
+		"...Mm? A picture?",
+		"Sure, let me just... Rest my eyes for a bit, Snoozer...",
+		"Zzz..."]
+	],
+	"Howl2": [
+		["Good morning! Rise and shine, Sunshine.",
+		"Hehehe... Did you enjoy seeing your friends again?",
+		"Aw, come on, what's with that scaredy cat look?",
+		"Did you see the way they all talked to you? All smiley and friendly...",
+		"It's all fake! A facade they put on in front of you! They're all a greedy, selfish lot, and they don't deserve your kindness!",
+		"They don't deserve your friendship. Or anything more...",
+		"Heh... Ehehe...",
+		"No one here deserves your attention...",
+		"Not even I.",
+		"But I need you... Like beautiful flowers need sunlight to bloom - I crave your warmth!",
+		"I can't live without you!",
+		"So, I took you...",
+		"You don't have a reason to go back outside anymore, after all.",
+		"I'll keep you safe... I'll keep you happy and smiling, just for me.",
+		"My Sunshine...",
+		"Say \"cheese\"!"]
 	]
 }
