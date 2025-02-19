@@ -30,9 +30,10 @@ func _ready() -> void:
 
 func nextQuest():
 	current_quest_num += 1
-	current_quest.active = false # deactivate finished quest
+	#current_quest.active = false # deactivate finished quest
 	current_quest = quests[current_quest_num]
-	current_quest.active = true # activate new quest
+	#current_quest.active = true # activate new quest
+	#questUIVis(true)
 	if current_quest_num == 2:
 		gameStage = gameStatus.middle
 	elif current_quest_num == 3:
@@ -40,6 +41,9 @@ func nextQuest():
 
 func updateText(text):
 	quest_ui.text = text
+	
+func questUIVis(yes):
+	quest_ui.set_visible(yes)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

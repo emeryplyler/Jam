@@ -5,6 +5,7 @@ extends CharacterBody3D
 var ui: Control # interaction icon
 var dialogue_manager: Control # this is for sending signals to the dialogue script
 var dialogue_script: Control # this is for getting the number of lines
+var block_number: int
 var line_number: int # index of line that the character has just said
 var num_of_lines: int
 
@@ -13,8 +14,9 @@ func _ready() -> void:
 	ui = get_tree().root.get_node("Root/UI/E")
 	dialogue_manager = get_tree().root.get_node("Root/UI/DialogueManager")
 	dialogue_script = get_tree().root.get_node("Root/UI/Dialogue")
+	block_number = 0
 	line_number = -1
-	num_of_lines = dialogue_script.get_num_of_lines(character_name)
+	num_of_lines = dialogue_script.get_num_of_lines(character_name, block_number)
 
 
 func _physics_process(delta: float) -> void:
@@ -43,10 +45,12 @@ func unhighlight():
 func on_interact():
 	if line_number < num_of_lines - 1:
 		line_number += 1
-		dialogue_manager.npc_talking.emit(character_name, line_number)
+		dialogue_manager.npc_talking.emit(character_name, block_number, line_number)
+		print(character_name, " block ", block_number, ", line ", line_number)
 		return true
 	else:
 		stop_talking()
+		print(character_name, " block ", block_number, ", line ", line_number)
 		return false
 
 # called by player when the npc first starts talking
@@ -58,3 +62,10 @@ func start_talking():
 func stop_talking():
 	dialogue_script.finish_dialogue()
 	line_number -= 1 # reset line number to the last line character said
+
+# is called when signal emitted allowing continue
+# for howl this is connected to quest system
+func next_block():
+	block_number += 1 # finished this current block, go to next one
+	num_of_lines = dialogue_script.get_num_of_lines(character_name, block_number)
+	line_number = -1 # reset line num

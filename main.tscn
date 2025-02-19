@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=35 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://quests.gd" id="11_tpq2c"]
 [ext_resource type="Script" path="res://quest_1.gd" id="12_oaaxh"]
 [ext_resource type="Script" path="res://tutorial.gd" id="13_58x1k"]
+[ext_resource type="Script" path="res://howl_quests.gd" id="15_6rwc8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gg674"]
 size = Vector3(200, 0, 200)
@@ -1102,8 +1103,10 @@ photo_cam = NodePath("../../PhotoAlbum")
 quest_manager = NodePath("..")
 quest_base_text = "Take pictures of all your friends!"
 
-[node name="Tutorial" type="Node" parent="UI/Quests"]
+[node name="Tutorial" type="Node" parent="UI/Quests" node_paths=PackedStringArray("photo_cam", "quest_manager")]
 script = ExtResource("13_58x1k")
+photo_cam = NodePath("../../PhotoAlbum")
+quest_manager = NodePath("..")
 quest_base_text = "Take a picture of Howl!"
 
 [node name="NPCs" type="Node3D" parent="."]
@@ -1115,11 +1118,17 @@ character_name = "Howl"
 [node name="Sprite3D" parent="NPCs/Howl" index="1"]
 texture = SubResource("CompressedTexture2D_xb6hi")
 
-[node name="Howl2" parent="NPCs" instance=ExtResource("5_jvqy5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0902141, -14.453, -1.97918)
-character_name = "Howl2"
+[node name="HowlQuests" type="Node" parent="NPCs/Howl" node_paths=PackedStringArray("howl_npc", "dialogue_manager", "quests")]
+script = ExtResource("15_6rwc8")
+howl_npc = NodePath("..")
+dialogue_manager = NodePath("../../../UI/DialogueManager")
+quests = NodePath("../../../UI/Quests")
 
-[node name="Sprite3D" parent="NPCs/Howl2" index="1"]
+[node name="HowlEnd" parent="NPCs" instance=ExtResource("5_jvqy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0902141, -14.453, -1.97918)
+character_name = "Howl"
+
+[node name="Sprite3D" parent="NPCs/HowlEnd" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0121098, 0.0212572)
 texture = SubResource("CompressedTexture2D_xb6hi")
 
@@ -1152,7 +1161,7 @@ character_name = "Kittevieve"
 texture = ExtResource("9_fo0y5")
 
 [editable path="NPCs/Howl"]
-[editable path="NPCs/Howl2"]
+[editable path="NPCs/HowlEnd"]
 [editable path="NPCs/Bunsie"]
 [editable path="NPCs/Ribberette"]
 [editable path="NPCs/Clawde"]

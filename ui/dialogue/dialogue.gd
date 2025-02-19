@@ -10,7 +10,8 @@ extends Control
 var all_text = {}
 var selected_text = []
 var current_speaker
-var line_num
+var block_num # characters may have multiple sort of sets of sentences
+var line_num # which line in the block the character is saying
 
 var talk_timer: int
 var talk_timer_max: int
@@ -46,14 +47,14 @@ func _process(_delta: float) -> void:
 			_on_type_timer_timeout()
 
 # this gets called every time player interacts with npc
-func set_speaker(speaker, line):
+func set_speaker(speaker, block, line):
 	current_speaker = speaker
 	# display next line for this speaker
-	if line >= len(all_text[speaker]):
+	if line >= len(all_text[speaker][block]):
 		# character done speaking
 		finish_dialogue()
 	else:
-		update_text(all_text[speaker][line])
+		update_text(all_text[speaker][block][line])
 
 
 
@@ -79,6 +80,7 @@ func _on_type_timer_timeout() -> void:
 	else:
 		talk_timer_active = false
 
-func get_num_of_lines(character_name):
-	var all_lines = all_text[character_name]
+# this is for the npcs to use to know when to release the player after talking
+func get_num_of_lines(character_name, block):
+	var all_lines = all_text[character_name][block]
 	return len(all_lines)

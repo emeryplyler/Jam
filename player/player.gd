@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 
-const SPEED = 10.0
+const SPEED = 100.0
 const mouse_sens = .002
 const raycast_length = 1000
 #const JUMP_VELOCITY = 4.5

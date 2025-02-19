@@ -11,7 +11,7 @@ var quest_progress = 0
 var quest_total_progress = 4
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func prepQuest():
 	need_photos_of = ["Bunsie", "Ribberette", "Clawde", "Kittevieve"]
 	photo_cam.has_photo_taken.connect(photo_taken)
 	update_text()
@@ -25,7 +25,8 @@ func photo_taken(character):
 			update_text()
 			quest_manager.updateText(quest_text)
 		if quest_progress >= quest_total_progress:
-			quest_manager.nextQuest()
+			#quest_manager.nextQuest()
+			quest_manager.questUIVis(false)
 			
 func update_text():
 	quest_text = quest_base_text + " " + str(quest_progress) + "/" + str(quest_total_progress)
