@@ -13,6 +13,10 @@ var post_tutorial = false
 var pictures_quest_started = false
 var pictures_quest
 
+var dark_pictures_quest_started = false
+var dark_pictures_quest
+
+
 # Activates quests as howl speaks
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,6 +36,10 @@ func check_lines(char_name, block, line):
 		if block == 2 and not pictures_quest_started:
 			pictures_quest_started = true
 			pictures_quest.prepQuest()
+		if pictures_quest_started and not dark_pictures_quest_started:
+			howl_npc.usingRandomBlock = true
+		else:
+			howl_npc.usingRandomBlock = false
 		
 
 
