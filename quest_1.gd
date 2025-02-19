@@ -14,6 +14,7 @@ var quest_total_progress = 4
 func prepQuest():
 	need_photos_of = ["Bunsie", "Ribberette", "Clawde", "Kittevieve"]
 	photo_cam.has_photo_taken.connect(photo_taken)
+	active = true
 	update_text()
 
 # listens for signal emitted by camera, logs character in range

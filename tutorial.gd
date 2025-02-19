@@ -12,7 +12,6 @@ var need_photos_of = []
 
 signal tutorial_done
 
-# Called when the node enters the scene tree for the first time.
 func prepQuest():
 	need_photos_of = ["Howl"]
 	photo_cam.has_photo_taken.connect(photo_taken)
@@ -28,8 +27,3 @@ func photo_taken(character):
 			quest_manager.nextQuest()
 			active = false
 			tutorial_done.emit()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

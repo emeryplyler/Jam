@@ -46,12 +46,16 @@ func on_interact():
 	if line_number < num_of_lines - 1:
 		line_number += 1
 		dialogue_manager.npc_talking.emit(character_name, block_number, line_number)
-		print(character_name, " block ", block_number, ", line ", line_number)
 		return true
 	else:
-		stop_talking()
-		print(character_name, " block ", block_number, ", line ", line_number)
-		return false
+		if block_number == 1 and line_number == 2: # ok not proud of this ngl
+			next_block()
+			stop_talking()
+			line_number += 1
+			return false
+		else:
+			stop_talking()
+			return false
 
 # called by player when the npc first starts talking
 func start_talking():
