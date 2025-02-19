@@ -67,9 +67,10 @@ func _physics_process(delta: float) -> void:
 					var destination = selected_thing.on_interact()
 					teleport(destination)
 				elif selected_thing.is_in_group("NPC"):
-					selected_thing.start_talking()
-					talking_to = selected_thing
-					talking = true # enter talking state
+					if not selected_thing.gone:
+						selected_thing.start_talking()
+						talking_to = selected_thing
+						talking = true # enter talking state
 	
 	if Input.is_action_just_pressed("Open Photos"):
 		photo_album.set_visible(not photo_album.is_visible())

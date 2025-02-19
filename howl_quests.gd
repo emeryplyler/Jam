@@ -26,10 +26,12 @@ func _ready() -> void:
 	tutorialNode.tutorial_done.connect(tutorial_done)
 	pictures_quest = quests.get_node("Quest1")
 	pictures_quest.picture_quest_done.connect(pictures_quest_done)
+	dark_pictures_quest = quests.get_node("Quest2")
+	
 
 func check_lines(char_name, block, line):
 	if char_name == "Howl":
-		print("Perceived: %s %d %d" % [char_name, block, line])
+		#print("Perceived: %s %d %d" % [char_name, block, line])
 		if block == 0 and not tutorial:
 			if line == 8:
 				tutorialNode.prepQuest()
@@ -41,6 +43,9 @@ func check_lines(char_name, block, line):
 			howl_npc.usingRandomBlock = true
 		else:
 			howl_npc.usingRandomBlock = false
+		if block == 5 and line == 7 and not dark_pictures_quest_started:
+			dark_pictures_quest_started = true
+			dark_pictures_quest.prepQuest()
 		
 
 

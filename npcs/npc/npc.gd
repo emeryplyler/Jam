@@ -1,24 +1,39 @@
 extends CharacterBody3D
 
 @export var character_name: String
+#const deathsprite = preload("res://npcs/npc/skull.png")
+var deathsprite
 
 var ui: Control # interaction icon
 var dialogue_manager: Control # this is for sending signals to the dialogue script
 var dialogue_script: Control # this is for getting the number of lines
+var photo_cam: Control # for hiding after picture taken
+var visibility_notifier: VisibleOnScreenNotifier3D
 var block_number: int
 var line_number: int # index of line that the character has just said
 var num_of_lines: int
 var usingRandomBlock = false
 var midGame = false
+var vanish = false
+var gone = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ui = get_tree().root.get_node("Root/UI/E")
 	dialogue_manager = get_tree().root.get_node("Root/UI/DialogueManager")
 	dialogue_script = get_tree().root.get_node("Root/UI/Dialogue")
+	photo_cam = get_tree().root.get_node("Root/UI/PhotoAlbum")
+	visibility_notifier = get_node("VisibilityNotifier")
+	get_tree().root.get_node("Root/UI/Quests/Quest2").dark_picture_quest_begin.connect(reveal_death)
+
 	block_number = 0
 	line_number = -1
 	num_of_lines = dialogue_script.get_num_of_lines(character_name, block_number)
+	photo_cam.has_photo_taken.connect(have_photo_taken)
+	
+	# prepare deathsprite
+	if character_name != "Howl":
+		deathsprite = load("res://npcs/npc/" + character_name + "_death.png")
 
 
 func _physics_process(delta: float) -> void:
@@ -30,12 +45,15 @@ func _physics_process(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if vanish and not gone and not visibility_notifier.is_on_screen():
+		set_visible(false)
+		gone = true
 
 
 func highlight():
-	ui.set_visible(true)
-	ui.get_node("Chat").set_visible(true)
+	if not gone:
+		ui.set_visible(true)
+		ui.get_node("Chat").set_visible(true)
 	
 
 func unhighlight():
@@ -99,3 +117,13 @@ func random_block(rangeMin, rangeMax):
 		block_number = rangeMin
 	line_number = -1
 	num_of_lines = dialogue_script.get_num_of_lines(character_name, block_number)
+
+func have_photo_taken(chara):
+	if chara != "Howl":
+		if chara == character_name:
+			vanish = true
+
+func reveal_death():
+	if character_name != "Howl":
+		get_node("Sprite3D").texture = deathsprite
+		set_visible(true)

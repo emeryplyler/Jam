@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=36 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://quests.gd" id="11_tpq2c"]
 [ext_resource type="Script" path="res://quest_1.gd" id="12_oaaxh"]
 [ext_resource type="Script" path="res://tutorial.gd" id="13_58x1k"]
+[ext_resource type="Script" path="res://quest_2.gd" id="14_rneg4"]
 [ext_resource type="Script" path="res://howl_quests.gd" id="15_6rwc8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gg674"]
@@ -1079,7 +1080,7 @@ libraries = {
 "": SubResource("AnimationLibrary_smavo")
 }
 
-[node name="Quests" type="Control" parent="UI" node_paths=PackedStringArray("quest_ui", "quest0", "quest1")]
+[node name="Quests" type="Control" parent="UI" node_paths=PackedStringArray("quest_ui", "quest0", "quest1", "quest2")]
 layout_mode = 1
 anchor_left = 0.0138889
 anchor_top = 0.0169753
@@ -1091,6 +1092,7 @@ script = ExtResource("11_tpq2c")
 quest_ui = NodePath("QuestText")
 quest0 = NodePath("Tutorial")
 quest1 = NodePath("Quest1")
+quest2 = NodePath("Quest2")
 
 [node name="QuestText" type="RichTextLabel" parent="UI/Quests"]
 layout_mode = 0
@@ -1108,6 +1110,12 @@ script = ExtResource("13_58x1k")
 photo_cam = NodePath("../../PhotoAlbum")
 quest_manager = NodePath("..")
 quest_base_text = "Take a picture of Howl!"
+
+[node name="Quest2" type="Node" parent="UI/Quests" node_paths=PackedStringArray("photo_cam", "quest_manager")]
+script = ExtResource("14_rneg4")
+photo_cam = NodePath("../../PhotoAlbum")
+quest_manager = NodePath("..")
+quest_base_text = "Take pictures of all your friends!"
 
 [node name="NPCs" type="Node3D" parent="."]
 

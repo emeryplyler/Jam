@@ -19,3 +19,5 @@ shape = SubResource("CapsuleShape3D_q1ql4")
 pixel_size = 0.003
 billboard = 2
 texture = SubResource("CompressedTexture2D_i4e2b")
+
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]
