@@ -37,9 +37,6 @@ func _ready() -> void:
 
 func nextQuest():
 	current_quest_num += 1
-	#current_quest.active = false # deactivate finished quest
-	player.teleport(player_end_spot.to_global(player_end_spot.position))
-	player.captured = true
 	current_quest = quests[current_quest_num]
 	print(current_quest_num)
 	#current_quest.active = true # activate new quest
