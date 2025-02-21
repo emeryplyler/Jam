@@ -7,8 +7,15 @@ extends Control
 @export var quest1: Node
 @export var quest2: Node
 @export var quest3: Node
+
+@export var blackout_overlay: AnimationPlayer
+@export var end_timer: Timer
+@export var player: CharacterBody3D
+@export var player_end_spot: Node3D
+
 var current_quest
 var current_quest_num = 0
+var moved = false
 
 enum gameStatus {
 	beginning,
@@ -31,13 +38,17 @@ func _ready() -> void:
 func nextQuest():
 	current_quest_num += 1
 	#current_quest.active = false # deactivate finished quest
+	player.teleport(player_end_spot.to_global(player_end_spot.position))
+	player.captured = true
 	current_quest = quests[current_quest_num]
+	print(current_quest_num)
 	#current_quest.active = true # activate new quest
 	#questUIVis(true)
 	if current_quest_num == 2:
 		gameStage = gameStatus.middle
 	elif current_quest_num == 3:
 		gameStage = gameStatus.end
+		end_timer.start() # count down to knocking out the player
 
 func updateText(text):
 	quest_ui.text = text
@@ -45,9 +56,17 @@ func updateText(text):
 func questUIVis(yes):
 	quest_ui.set_visible(yes)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+
+func _on_timer_timeout() -> void:
+	if not moved:
+		blackout_overlay.play("blackout")
+		await blackout_overlay.animation_finished
+		player.teleport(player_end_spot.to_global(player_end_spot.position))
+		player.captured = true
+		await get_tree().create_timer(2.0).timeout
+		blackout_overlay.play("blackout", -1, -1.0)
+		#wake_up()
+		moved = true
+
+func wake_up():
 	pass
-	#if current_quest.quest_finished():
-		#nextQuest()
-	

@@ -40,7 +40,3 @@ func photo_taken(character):
 			
 func update_text():
 	quest_text = quest_base_text + " " + str(quest_progress) + "/" + str(quest_total_progress)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

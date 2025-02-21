@@ -46,7 +46,6 @@ func check_lines(char_name, block, line):
 		if block == 5 and line == 7 and not dark_pictures_quest_started:
 			dark_pictures_quest_started = true
 			dark_pictures_quest.prepQuest()
-		
 
 
 func tutorial_done():
@@ -55,7 +54,3 @@ func tutorial_done():
 func pictures_quest_done():
 	howl_npc.midGame = true
 	howl_npc.set_block(5)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

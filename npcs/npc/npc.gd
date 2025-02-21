@@ -32,7 +32,7 @@ func _ready() -> void:
 	photo_cam.has_photo_taken.connect(have_photo_taken)
 	
 	# prepare deathsprite
-	if character_name != "Howl":
+	if character_name != "Howl" and character_name != "Howl ":
 		deathsprite = load("res://npcs/npc/" + character_name + "_death.png")
 
 
@@ -119,11 +119,11 @@ func random_block(rangeMin, rangeMax):
 	num_of_lines = dialogue_script.get_num_of_lines(character_name, block_number)
 
 func have_photo_taken(chara):
-	if chara != "Howl":
+	if chara != "Howl" and chara != "Howl ":
 		if chara == character_name:
 			vanish = true
 
 func reveal_death():
-	if character_name != "Howl":
+	if character_name != "Howl" and character_name != "Howl ":
 		get_node("Sprite3D").texture = deathsprite
 		set_visible(true)

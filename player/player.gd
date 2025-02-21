@@ -19,6 +19,8 @@ var taking_photo: bool = false
 var things_in_range = [] # this is updated whenever things enter InteractRange using signals
 var selected_thing
 
+var captured = false # this will just be changed directly by the quest script
+
 signal snap
 
 func _ready() -> void:
@@ -38,7 +40,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration
 	# can't move if talking maybe
 	# TODO: change later?
-	if not talking_to:
+	if not talking_to and not captured:
 		var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
 		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction:

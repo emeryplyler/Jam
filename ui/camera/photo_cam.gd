@@ -25,10 +25,6 @@ func _ready() -> void:
 	grid = get_node("ScrollContainer/MarginContainer/GridContainer")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func on_snap():
 	player.camera_overlay.set_visible(false)
 	ui.set_visible(false)

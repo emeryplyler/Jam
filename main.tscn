@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=39 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
@@ -671,6 +671,42 @@ _data = {
 "flash": SubResource("Animation_78ki5")
 }
 
+[sub_resource type="Animation" id="Animation_2a1ly"]
+resource_name = "blackout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vsfbq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mac0t"]
+_data = {
+"RESET": SubResource("Animation_vsfbq"),
+"blackout": SubResource("Animation_2a1ly")
+}
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xb6hi"]
 resource_local_to_scene = true
 load_path = "res://.godot/imported/dilly.png-fc9f6bb31f623b157520eeb5ab24b8a3.s3tc.ctex"
@@ -822,7 +858,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_d4opq")
 
 [node name="PlayerSpot" type="Node3D" parent="World/PointsOfInterest/Basement"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.629048, 1.69071)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.629048, 0.464783)
 
 [node name="Trees" type="Node3D" parent="World"]
 
@@ -1080,7 +1116,7 @@ libraries = {
 "": SubResource("AnimationLibrary_smavo")
 }
 
-[node name="Quests" type="Control" parent="UI" node_paths=PackedStringArray("quest_ui", "quest0", "quest1", "quest2")]
+[node name="Quests" type="Control" parent="UI" node_paths=PackedStringArray("quest_ui", "quest0", "quest1", "quest2", "blackout_overlay", "end_timer", "player", "player_end_spot")]
 layout_mode = 1
 anchor_left = 0.0138889
 anchor_top = 0.0169753
@@ -1093,6 +1129,10 @@ quest_ui = NodePath("QuestText")
 quest0 = NodePath("Tutorial")
 quest1 = NodePath("Quest1")
 quest2 = NodePath("Quest2")
+blackout_overlay = NodePath("../Blackout/AnimationPlayer")
+end_timer = NodePath("Timer")
+player = NodePath("../../Player")
+player_end_spot = NodePath("../../World/PointsOfInterest/Basement/PlayerSpot")
 
 [node name="QuestText" type="RichTextLabel" parent="UI/Quests"]
 layout_mode = 0
@@ -1117,6 +1157,23 @@ photo_cam = NodePath("../../PhotoAlbum")
 quest_manager = NodePath("..")
 quest_base_text = "Take pictures of all your friends!"
 
+[node name="Timer" type="Timer" parent="UI/Quests"]
+wait_time = 3.0
+
+[node name="Blackout" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Blackout"]
+libraries = {
+"": SubResource("AnimationLibrary_mac0t")
+}
+
 [node name="NPCs" type="Node3D" parent="."]
 
 [node name="Howl" parent="NPCs" instance=ExtResource("5_jvqy5")]
@@ -1134,7 +1191,7 @@ quests = NodePath("../../../UI/Quests")
 
 [node name="HowlEnd" parent="NPCs" instance=ExtResource("5_jvqy5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0902141, -14.453, -1.97918)
-character_name = "Howl"
+character_name = "Howl "
 
 [node name="Sprite3D" parent="NPCs/HowlEnd" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0121098, 0.0212572)
@@ -1167,6 +1224,8 @@ character_name = "Kittevieve"
 
 [node name="Sprite3D" parent="NPCs/Kittevieve" index="1"]
 texture = ExtResource("9_fo0y5")
+
+[connection signal="timeout" from="UI/Quests/Timer" to="UI/Quests" method="_on_timer_timeout"]
 
 [editable path="NPCs/Howl"]
 [editable path="NPCs/HowlEnd"]
