@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://budhy3vgcdxe4"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_jpx6y"]
+
+[sub_resource type="Curve" id="Curve_1lw0t"]
+_data = [Vector2(0, 0.21978), 0.0, 0.0, 0, 0, Vector2(1, 0.538462), 0.214286, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kyg8g"]
+curve = SubResource("Curve_1lw0t")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jpx6y")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CurveTexture_kyg8g")
+
+[node name="Title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 19.0
+offset_right = 394.0
+offset_bottom = 143.0
+theme_override_font_sizes/normal_font_size = 71
+text = "Snapshot"
+
+[node name="Credits" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -363.0
+offset_top = -124.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 26
+text = "Programming by Emery
+Art by Smilestrawbunny
+Music by Aensland"
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 169.0
+offset_right = 235.0
+offset_bottom = 260.0
+theme_override_font_sizes/font_size = 60
+text = "Start"
+
+[node name="Settings" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 86.0
+offset_top = 305.0
+offset_right = 235.0
+offset_bottom = 396.0
+theme_override_font_sizes/font_size = 60
+text = "Settings"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 445.0
+offset_right = 235.0
+offset_bottom = 536.0
+theme_override_font_sizes/font_size = 60
+text = "Quit"
+
+[connection signal="button_up" from="Start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="Settings" to="." method="_on_settings_button_up"]
+[connection signal="button_up" from="Quit" to="." method="_on_quit_button_up"]
