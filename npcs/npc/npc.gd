@@ -84,6 +84,10 @@ func on_interact():
 			stop_talking()
 			line_number += 1
 			return false
+		if character_name == "Howl ":
+			stop_talking()
+			gone = true
+			return false
 		else:
 			stop_talking()
 			return false

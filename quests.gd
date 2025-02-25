@@ -6,7 +6,6 @@ extends Control
 @export var quest0: Node
 @export var quest1: Node
 @export var quest2: Node
-@export var quest3: Node
 
 @export var blackout_overlay: AnimationPlayer
 @export var end_timer: Timer
@@ -30,22 +29,22 @@ var quests = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	gameStage = gameStatus.beginning
-	quests = [quest0, quest1, quest2, quest3]
+	quests = [quest0, quest1, quest2]
 	#current_quest = quests[current_quest_num]
 	#current_quest.active = true
 	#updateText(current_quest.quest_text)
 
 func nextQuest():
 	current_quest_num += 1
-	current_quest = quests[current_quest_num]
-	print(current_quest_num)
-	#current_quest.active = true # activate new quest
-	#questUIVis(true)
 	if current_quest_num == 2:
 		gameStage = gameStatus.middle
 	elif current_quest_num == 3:
 		gameStage = gameStatus.end
 		end_timer.start() # count down to knocking out the player
+		return
+	current_quest = quests[current_quest_num]
+	#current_quest.active = true # activate new quest
+	#questUIVis(true)
 
 func updateText(text):
 	quest_ui.text = text
@@ -64,6 +63,3 @@ func _on_timer_timeout() -> void:
 		blackout_overlay.play("blackout", -1, -1.0)
 		#wake_up()
 		moved = true
-
-func wake_up():
-	pass

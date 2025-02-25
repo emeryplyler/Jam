@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=40 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://tutorial.gd" id="13_58x1k"]
 [ext_resource type="Script" path="res://quest_2.gd" id="14_rneg4"]
 [ext_resource type="Script" path="res://howl_quests.gd" id="15_6rwc8"]
+[ext_resource type="Script" path="res://howl_ending.gd" id="17_1bjbc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gg674"]
 size = Vector3(200, 0, 200)
@@ -568,6 +569,42 @@ Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 2
 Label/fonts/font = SubResource("FontFile_856a8")
 
+[sub_resource type="Animation" id="Animation_vsfbq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2a1ly"]
+resource_name = "blackout"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mac0t"]
+_data = {
+"RESET": SubResource("Animation_vsfbq"),
+"blackout": SubResource("Animation_2a1ly")
+}
+
 [sub_resource type="Theme" id="Theme_70clx"]
 default_font_size = 60
 
@@ -669,42 +706,6 @@ tracks/3/keys = {
 _data = {
 "RESET": SubResource("Animation_l0sfw"),
 "flash": SubResource("Animation_78ki5")
-}
-
-[sub_resource type="Animation" id="Animation_vsfbq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_2a1ly"]
-resource_name = "blackout"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mac0t"]
-_data = {
-"RESET": SubResource("Animation_vsfbq"),
-"blackout": SubResource("Animation_2a1ly")
 }
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xb6hi"]
@@ -894,6 +895,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_k8t3u")
+
+[node name="Blackout" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Blackout"]
+libraries = {
+"": SubResource("AnimationLibrary_mac0t")
+}
 
 [node name="E" type="TextureRect" parent="UI"]
 visible = false
@@ -1160,20 +1175,6 @@ quest_base_text = "Take pictures of all your friends!"
 [node name="Timer" type="Timer" parent="UI/Quests"]
 wait_time = 3.0
 
-[node name="Blackout" type="ColorRect" parent="UI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Blackout"]
-libraries = {
-"": SubResource("AnimationLibrary_mac0t")
-}
-
 [node name="NPCs" type="Node3D" parent="."]
 
 [node name="Howl" parent="NPCs" instance=ExtResource("5_jvqy5")]
@@ -1196,6 +1197,11 @@ character_name = "Howl "
 [node name="Sprite3D" parent="NPCs/HowlEnd" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0121098, 0.0212572)
 texture = SubResource("CompressedTexture2D_xb6hi")
+
+[node name="HowlEnding" type="Node" parent="NPCs/HowlEnd" node_paths=PackedStringArray("parent", "blackout")]
+script = ExtResource("17_1bjbc")
+parent = NodePath("..")
+blackout = NodePath("../../../UI/Blackout/AnimationPlayer")
 
 [node name="Bunsie" parent="NPCs" instance=ExtResource("5_jvqy5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.5413, 1.49026, -51.3244)

@@ -15,12 +15,18 @@ signal has_photo_taken(character)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player.snap.connect(on_snap)
+	
+	var dir
+	if not FileAccess.file_exists("user://photos/"):
+		var try = DirAccess.make_dir_recursive_absolute("user://photos/")
+		if try != OK:
+			print("Error: couldn't create photos directory, code ", try)
 
-	var dir = DirAccess.open("res://player/photos/")
+	dir = DirAccess.open("user://photos/")
 
 	# clear photo folder
-	for file in DirAccess.get_files_at("res://player/photos/"): # hopefully this only happens when the game opens
-		dir.remove(file)
+	#for file in DirAccess.get_files_at("user://photos/"): # hopefully this only happens when the game opens
+		#dir.remove(file)
 	
 	grid = get_node("ScrollContainer/MarginContainer/GridContainer")
 
@@ -32,7 +38,7 @@ func on_snap():
 	await RenderingServer.frame_post_draw # wait for everything to catch up
 	
 	var image = get_viewport().get_texture().get_image()
-	var save_path = "res://player/photos/"+fileName+str(photos_taken)+".png"
+	var save_path = "user://photos/"+fileName+str(photos_taken)+".png"
 	image.save_png(save_path)
 	photos_taken += 1
 	
