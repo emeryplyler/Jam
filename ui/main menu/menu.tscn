@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://budhy3vgcdxe4"]
+[gd_scene load_steps=8 format=3 uid="uid://onc53nk3ndql"]
 
-[ext_resource type="Script" path="res://menu.gd" id="1_jpx6y"]
-[ext_resource type="AudioStream" uid="uid://bq0gowrp5xuhp" path="res://music/yansim.ogg" id="2_gg11s"]
+[ext_resource type="Script" path="res://ui/main menu/menu.gd" id="1_jpx6y"]
+[ext_resource type="AudioStream" uid="uid://bq0gowrp5xuhp" path="res://music/yansim.ogg" id="2_5r20t"]
 
 [sub_resource type="Curve" id="Curve_1lw0t"]
 _data = [Vector2(0, 0.21978), 0.0, 0.0, 0, 0, Vector2(1, 0.538462), 0.214286, 0.0, 0, 0]
@@ -201,8 +201,8 @@ libraries = {
 "": SubResource("AnimationLibrary_pvvr8")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_gg11s")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_5r20t")
 autoplay = true
 parameters/looping = true
 
