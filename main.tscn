@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://c3scy7pclrd8h"]
+[gd_scene load_steps=43 format=3 uid="uid://c3scy7pclrd8h"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_rwvyv"]
 [ext_resource type="Environment" uid="uid://48r01h6q5eji" path="res://world/sky/environment.tres" id="2_5gfh0"]
+[ext_resource type="PackedScene" uid="uid://bw3smdcx0pfp6" path="res://world/decorations/tree.tscn" id="2_wrcxm"]
 [ext_resource type="Texture2D" uid="uid://6w3xg78m7scg" path="res://ui/e.png" id="4_ldyvo"]
 [ext_resource type="Texture2D" uid="uid://cqolb7o880qhy" path="res://ui/dialogue/textbox.png" id="5_8bmym"]
 [ext_resource type="Script" path="res://ui/dialogue/dialogue.gd" id="5_dd1ya"]
@@ -864,6 +865,9 @@ shape = SubResource("BoxShape3D_d4opq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.629048, 0.464783)
 
 [node name="Trees" type="Node3D" parent="World"]
+
+[node name="Tree" parent="World/Trees" instance=ExtResource("2_wrcxm")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -11.4335, 0, -7.59595)
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("cam_arm", "player_view", "interact_ray", "photo_album", "camera_overlay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01, 0)
