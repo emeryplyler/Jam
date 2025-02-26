@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfev1ndh4fw2v"
-path="res://.godot/imported/clawde_death.png-c4b2fdd9fe18bb8ad069e3de68c347c5.ctex"
+uid="uid://dcabh34rs4o51"
+path="res://.godot/imported/Howl8.png-a4f5e55cf9c19cf1235c126f6f299ccf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://npcs/npc/clawde_death.png"
-dest_files=["res://.godot/imported/clawde_death.png-c4b2fdd9fe18bb8ad069e3de68c347c5.ctex"]
+source_file="res://npcs/npc/Howl8.png"
+dest_files=["res://.godot/imported/Howl8.png-a4f5e55cf9c19cf1235c126f6f299ccf.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfev1ndh4fw2v"
-path="res://.godot/imported/clawde_death.png-c4b2fdd9fe18bb8ad069e3de68c347c5.ctex"
+uid="uid://cl1iy7jx1q82i"
+path="res://.godot/imported/Bunsie_B.png-6781cd57fe7eb085834db52cbf8cfa2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://npcs/npc/clawde_death.png"
-dest_files=["res://.godot/imported/clawde_death.png-c4b2fdd9fe18bb8ad069e3de68c347c5.ctex"]
+source_file="res://npcs/npc/Bunsie_B.png"
+dest_files=["res://.godot/imported/Bunsie_B.png-6781cd57fe7eb085834db52cbf8cfa2e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blu3rim8sk4cf"
-path="res://.godot/imported/Ribberette_death.png-8f18b48cf3a641df5b8bf3e8e5173d4c.ctex"
+uid="uid://c6c08p4ek6ep4"
+path="res://.godot/imported/ribberette_death.png-eccc57a1db83f5d419f57696d75b17f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://npcs/npc/Ribberette_death.png"
-dest_files=["res://.godot/imported/Ribberette_death.png-8f18b48cf3a641df5b8bf3e8e5173d4c.ctex"]
+source_file="res://npcs/npc/ribberette_death.png"
+dest_files=["res://.godot/imported/ribberette_death.png-eccc57a1db83f5d419f57696d75b17f6.ctex"]
 
 [params]
 

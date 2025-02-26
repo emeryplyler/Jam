@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfev1ndh4fw2v"
-path="res://.godot/imported/clawde_death.png-c4b2fdd9fe18bb8ad069e3de68c347c5.ctex"
+uid="uid://ie516ubf0gcb"
+path="res://.godot/imported/Ribberette.png-8639e0e6adcc04a5e01cee0c8efeeeef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://npcs/npc/clawde_death.png"
-dest_files=["res://.godot/imported/clawde_death.png-c4b2fdd9fe18bb8ad069e3de68c347c5.ctex"]
+source_file="res://npcs/npc/Ribberette.png"
+dest_files=["res://.godot/imported/Ribberette.png-8639e0e6adcc04a5e01cee0c8efeeeef.ctex"]
 
 [params]
 
