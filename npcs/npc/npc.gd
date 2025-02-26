@@ -33,7 +33,7 @@ func _ready() -> void:
 	
 	# prepare deathsprite
 	if character_name != "Howl" and character_name != "Howl ":
-		deathsprite = load("res://npcs/npc/" + character_name + "_death.png")
+		deathsprite = load("res://npcs/npc/" + character_name.to_lower() + "_death.png")
 
 
 func _physics_process(delta: float) -> void:
