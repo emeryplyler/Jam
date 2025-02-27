@@ -1,13 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmkvgirxhcmku"]
 
 [ext_resource type="Script" path="res://npcs/npc/npc.gd" id="1_2od60"]
+[ext_resource type="Texture2D" uid="uid://17fg7lobmq1k" path="res://npcs/npc/Bunsie_A.png" id="2_fj15j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1ql4"]
 height = 2.41206
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i4e2b"]
-resource_local_to_scene = true
-load_path = "res://.godot/imported/dilly.png-fc9f6bb31f623b157520eeb5ab24b8a3.s3tc.ctex"
 
 [node name="NPC" type="CharacterBody3D" groups=["Interactable", "NPC"]]
 script = ExtResource("1_2od60")
@@ -16,8 +13,7 @@ script = ExtResource("1_2od60")
 shape = SubResource("CapsuleShape3D_q1ql4")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-pixel_size = 0.003
 billboard = 2
-texture = SubResource("CompressedTexture2D_i4e2b")
+texture = ExtResource("2_fj15j")
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]
