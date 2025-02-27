@@ -2,6 +2,11 @@ extends CharacterBody3D
 
 @export var character_name: String
 #const deathsprite = preload("res://npcs/npc/skull.png")
+@export var neutral_sprite: Texture
+@export var talking_sprite: Texture
+@export var current_sprite: int : set = set_current_sprite # variable for animator to use
+var animator: AnimationPlayer
+var sprite_3d: Sprite3D
 var deathsprite
 
 var ui: Control # interaction icon
@@ -17,6 +22,10 @@ var midGame = false
 var vanish = false
 var gone = false
 
+#var talking = false
+#var talk_anim_timer = 0
+#var talk_anim_max = 50 # talk animation speed
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ui = get_tree().root.get_node("Root/UI/E")
@@ -30,6 +39,10 @@ func _ready() -> void:
 	line_number = -1
 	num_of_lines = dialogue_script.get_num_of_lines(character_name, block_number)
 	photo_cam.has_photo_taken.connect(have_photo_taken)
+	
+	# prepare talk animation
+	animator = get_node("AnimationPlayer")
+	sprite_3d = get_node("Sprite3D")
 	
 	# prepare deathsprite
 	if character_name != "Howl" and character_name != "Howl ":
@@ -49,6 +62,10 @@ func _process(_delta: float) -> void:
 	if vanish and not gone and not visibility_notifier.is_on_screen():
 		set_visible(false)
 		gone = true
+	#if talking:
+		#animator.play("talk")
+	#else:
+		#animator.stop()
 
 
 func highlight():
@@ -97,11 +114,13 @@ func on_interact():
 func start_talking():
 	dialogue_script.start_dialogue()
 	on_interact()
+	animator.play("talk")
 
 
 func stop_talking():
 	dialogue_script.finish_dialogue()
 	line_number -= 1 # reset line number to the last line character said
+	animator.stop()
 
 # is called when signal emitted allowing continue
 # for howl this is connected to quest system
@@ -122,6 +141,14 @@ func random_block(rangeMin, rangeMax):
 		block_number = rangeMin
 	line_number = -1
 	num_of_lines = dialogue_script.get_num_of_lines(character_name, block_number)
+
+# used by animator
+func set_current_sprite(frame: int):
+	if frame == 0:
+		sprite_3d.texture = neutral_sprite
+	else:
+		sprite_3d.texture = talking_sprite
+
 
 func have_photo_taken(chara):
 	if chara != "Howl" and chara != "Howl ":

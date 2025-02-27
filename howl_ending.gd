@@ -14,6 +14,6 @@ func _process(delta: float) -> void:
 	if parent.gone:
 		e.set_visible(false)
 		blackout.play("blackout")
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		await get_tree().create_timer(2.0).timeout
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().change_scene_to_file("res://menu.tscn")

@@ -1,10 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmkvgirxhcmku"]
+[gd_scene load_steps=7 format=3 uid="uid://cmkvgirxhcmku"]
 
 [ext_resource type="Script" path="res://npcs/npc/npc.gd" id="1_2od60"]
 [ext_resource type="Texture2D" uid="uid://17fg7lobmq1k" path="res://npcs/npc/Bunsie_A.png" id="2_fj15j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q1ql4"]
 height = 2.41206
+
+[sub_resource type="Animation" id="Animation_hmx28"]
+resource_name = "talk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:current_sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_c111y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:current_sprite")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5eqs4"]
+_data = {
+"RESET": SubResource("Animation_c111y"),
+"talk": SubResource("Animation_hmx28")
+}
 
 [node name="NPC" type="CharacterBody3D" groups=["Interactable", "NPC"]]
 script = ExtResource("1_2od60")
@@ -19,3 +56,8 @@ alpha_cut = 1
 texture = ExtResource("2_fj15j")
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5eqs4")
+}

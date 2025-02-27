@@ -1,6 +1,5 @@
 extends AudioStreamPlayer
 
-const YANSIM = preload("res://music/yansim.ogg")
 const YANSIM_CORPSEVILLAGE = preload("res://music/yansim_corpsevillage.ogg")
 
 @onready var quest: Node = $"../UI/Quests/Quest2"
