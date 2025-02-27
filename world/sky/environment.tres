@@ -13,3 +13,4 @@ background_mode = 2
 sky = SubResource("Sky_8vwsa")
 ambient_light_sky_contribution = 0.75
 reflected_light_source = 1
+ssao_enabled = true
