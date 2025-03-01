@@ -20,8 +20,3 @@ func _ready() -> void:
 		var instance_pos = multimesh.get_instance_transform(i).origin
 		new_collider.position = Vector3(instance_pos.x, -15, instance_pos.z)
 		#print(instance_transform.basis.y)
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass

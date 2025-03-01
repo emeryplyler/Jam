@@ -10,9 +10,6 @@ func _ready() -> void:
 	play()
 	quest.dark_picture_quest_begin.connect(onStageChange)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func onStageChange():
 	var pos = get_playback_position()

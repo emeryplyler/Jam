@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dgwcfg4ueoily"]
+
+[ext_resource type="FontFile" uid="uid://dlwecprcocmn4" path="res://ui/riffic.otf" id="1_nfttr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7op0i"]
+bg_color = Color(0.895073, 0.372633, 0.742785, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fkdw"]
+bg_color = Color(0.4, 0.132, 0.315133, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uh4l3"]
+bg_color = Color(0.293124, 0.330086, 0.791803, 1)
+
+[resource]
+default_font = ExtResource("1_nfttr")
+default_font_size = 23
+Button/styles/focus = SubResource("StyleBoxFlat_7op0i")
+Button/styles/hover = SubResource("StyleBoxFlat_0fkdw")
+Button/styles/normal = SubResource("StyleBoxFlat_uh4l3")

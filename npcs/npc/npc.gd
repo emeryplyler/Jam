@@ -49,14 +49,6 @@ func _ready() -> void:
 		deathsprite = load("res://npcs/npc/" + character_name.to_lower() + "_death.png")
 
 
-func _physics_process(delta: float) -> void:
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta
-	#
-	#move_and_slide()
-	pass
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if vanish and not gone and not visibility_notifier.is_on_screen():

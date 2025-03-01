@@ -30,6 +30,7 @@ var quests = []
 func _ready() -> void:
 	gameStage = gameStatus.beginning
 	quests = [quest0, quest1, quest2]
+	quest_ui.text = ""
 	#current_quest = quests[current_quest_num]
 	#current_quest.active = true
 	#updateText(current_quest.quest_text)

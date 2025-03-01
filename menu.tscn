@@ -1,14 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://budhy3vgcdxe4"]
+[gd_scene load_steps=9 format=3 uid="uid://budhy3vgcdxe4"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_jpx6y"]
 [ext_resource type="AudioStream" uid="uid://bq0gowrp5xuhp" path="res://music/yansim.ogg" id="2_gg11s"]
+[ext_resource type="Theme" uid="uid://dgwcfg4ueoily" path="res://ui/fonttheme.tres" id="2_pq5br"]
 
-[sub_resource type="Curve" id="Curve_1lw0t"]
-_data = [Vector2(0, 0.21978), 0.0, 0.0, 0, 0, Vector2(1, 0.538462), 0.214286, 0.0, 0, 0]
-point_count = 2
+[sub_resource type="Gradient" id="Gradient_po51c"]
+offsets = PackedFloat32Array(0, 0.0714286, 1)
+colors = PackedColorArray(0.32, 0.0288, 0.0288, 1, 0.91, 0.5551, 0.904085, 1, 0.449, 0.43, 1, 1)
 
-[sub_resource type="CurveTexture" id="CurveTexture_kyg8g"]
-curve = SubResource("Curve_1lw0t")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4bbpy"]
+gradient = SubResource("Gradient_po51c")
+fill_from = Vector2(0.247706, 1)
+fill_to = Vector2(0.454128, 0)
 
 [sub_resource type="Animation" id="Animation_eb5xb"]
 length = 0.001
@@ -130,7 +133,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = SubResource("CurveTexture_kyg8g")
+texture = SubResource("GradientTexture2D_4bbpy")
 
 [node name="Title" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -138,7 +141,8 @@ offset_left = 31.0
 offset_top = 19.0
 offset_right = 394.0
 offset_bottom = 143.0
-theme_override_font_sizes/normal_font_size = 71
+theme = ExtResource("2_pq5br")
+theme_override_font_sizes/normal_font_size = 80
 text = "Snapshot"
 
 [node name="Credits" type="RichTextLabel" parent="."]
@@ -152,6 +156,7 @@ offset_left = -363.0
 offset_top = -124.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("2_pq5br")
 theme_override_font_sizes/normal_font_size = 26
 text = "Programming by Emery
 Art by Smilestrawbunny
@@ -160,9 +165,10 @@ Music by Aensland"
 [node name="Start" type="Button" parent="."]
 layout_mode = 0
 offset_left = 86.0
-offset_top = 169.0
-offset_right = 235.0
-offset_bottom = 260.0
+offset_top = 218.0
+offset_right = 278.0
+offset_bottom = 309.0
+theme = ExtResource("2_pq5br")
 theme_override_font_sizes/font_size = 60
 text = "Start"
 
@@ -179,9 +185,10 @@ text = "Settings"
 [node name="Quit" type="Button" parent="."]
 layout_mode = 0
 offset_left = 86.0
-offset_top = 445.0
+offset_top = 407.0
 offset_right = 235.0
-offset_bottom = 536.0
+offset_bottom = 498.0
+theme = ExtResource("2_pq5br")
 theme_override_font_sizes/font_size = 60
 text = "Quit"
 
