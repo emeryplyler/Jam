@@ -6,6 +6,8 @@ extends Node
 @export var howl_animator: AnimationPlayer
 @export var howl_sprite: Sprite3D
 
+@export var sound: AudioStreamPlayer
+
 # special howl faces
 @export var faces: Array[Texture2D]
 
@@ -34,6 +36,7 @@ func _process(delta: float) -> void:
 		e.set_visible(false)
 		howl_sprite.set_texture(faces[3])
 		blackout.play("blackout")
+		sound.play()
 		await get_tree().create_timer(3.0).timeout
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().change_scene_to_file("res://menu.tscn")

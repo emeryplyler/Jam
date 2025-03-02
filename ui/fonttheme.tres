@@ -4,12 +4,24 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7op0i"]
 bg_color = Color(0.895073, 0.372633, 0.742785, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fkdw"]
 bg_color = Color(0.4, 0.132, 0.315133, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uh4l3"]
-bg_color = Color(0.293124, 0.330086, 0.791803, 1)
+bg_color = Color(0, 0.582, 0.97, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [resource]
 default_font = ExtResource("1_nfttr")

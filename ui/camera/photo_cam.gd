@@ -4,6 +4,7 @@ extends Control
 @export var ui: Control # for hiding UI during picture taking
 @export var flash: AnimationPlayer
 @export var gallery_pic_scene: PackedScene
+@export var sound: AudioStreamPlayer
 
 var grid
 
@@ -35,6 +36,7 @@ func on_snap():
 	player.camera_overlay.set_visible(false)
 	ui.set_visible(false)
 	flash.play("flash") # because of timing this basically plays after the photo is taken/ui hides
+	sound.play()
 	await RenderingServer.frame_post_draw # wait for everything to catch up
 	
 	var image = get_viewport().get_texture().get_image()

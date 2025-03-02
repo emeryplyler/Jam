@@ -62,10 +62,11 @@ void fragment() {
 	vec3 color = mix(bottom_color, top_color, 1.0 - UV.y);
 	
 	// Add fake ambient occlusion by darkening the base of the mesh
-	float ao_fallof = pow(UV.y, 5.0);
-	vec3 ao_color = bottom_color * (1.0 - ambient_occlusion_factor);
+	//float ao_fallof = pow(UV.y, 5.0);
+	//vec3 ao_color = bottom_color * (1.0 - ambient_occlusion_factor);
 	
-	ALBEDO = mix(color, ao_color, ao_fallof);
+	//ALBEDO = mix(color, ao_color, ao_fallof);
+	ALBEDO = color;
 	ROUGHNESS = 0.4;
 	
 	// Increase the Specular with Grass Height

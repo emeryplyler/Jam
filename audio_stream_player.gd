@@ -1,6 +1,9 @@
 extends AudioStreamPlayer
 
 const YANSIM_CORPSEVILLAGE = preload("res://music/yansim_corpsevillage.ogg")
+const THUD = preload("res://music/thud.ogg")
+
+var no_music = false
 
 @onready var quest: Node = $"../UI/Quests/Quest2"
 
@@ -18,4 +21,10 @@ func onStageChange():
 
 
 func _on_timer_timeout() -> void:
-	stop()
+	if not no_music:
+		parameters.looping = false
+		#"parameters/looping"
+		no_music = true
+		stop()
+		set_stream(THUD)
+		play()
