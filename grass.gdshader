@@ -18,28 +18,47 @@ uniform float wind_noise_speed: hint_range(0.0, 1.0, 0.001) = 0.1;
 // Instance the Player Position through a GDScript in the _physics_process
 instance uniform vec3 player_position;
 
+// pond stuff?
+uniform vec3 pond_position;
+uniform float pond_radius;
+
+varying float disappear;
+
 void vertex() {
 	vec3 world_position = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	
-	vec3 wind_texture = texture(wind_noise, world_position.xz * wind_noise_size + normalize(-wind_direction.xz) * (TIME + UV.y / 2.5) * wind_noise_speed).rgb;
-	vec3 wind_vector = (vec4(wind_texture * normalize(wind_direction) * wind_strength, 0.0) * MODEL_MATRIX).xyz;
+	// pond stuff?
+	float dist = sqrt(pow(pond_position.x - world_position.x, 2) + pow(pond_position.z - world_position.z, 2));
+	if (dist > pond_radius) {
+		disappear = 1.0;
+		vec3 wind_texture = texture(wind_noise, world_position.xz * wind_noise_size + normalize(-wind_direction.xz) * (TIME + UV.y / 2.5) * wind_noise_speed).rgb;
+		vec3 wind_vector = (vec4(wind_texture * normalize(wind_direction) * wind_strength, 0.0) * MODEL_MATRIX).xyz;
+		
+		float player_height = smoothstep(1.0, 0.0, length(player_position.y - world_position.y + 0.3));
+		vec3 push_direction = vec3(world_position - player_position) * vec3(1 , -0.3 ,1);
+		float player_position_factor = smoothstep(player_displacement_size, 0.0, length(push_direction));
+		
+		vec3 player_push_vector = (vec4(normalize(push_direction), 0.0) * MODEL_MATRIX).xyz;
+		
+		// Apply Player Position displacement
+		VERTEX += player_push_vector * (1.0 - UV.y) * player_position_factor * player_displacement_strength * player_height;
+		// Apply Wind displacement linearly
+		VERTEX += wind_vector * (1.0 - UV.y) * (1.0 - player_position_factor * 0.7);
+		
+		// A new normal correction, which aligns the normals of the mesh facing upwards no matter the original direction.
+		NORMAL = vec3(0.0, 1.0, 0.0);
+	} else {
+		disappear = 0.0;
+	}
 	
-	float player_height = smoothstep(1.0, 0.0, length(player_position.y - world_position.y + 0.3));
-	vec3 push_direction = vec3(world_position - player_position) * vec3(1 , -0.3 ,1);
-	float player_position_factor = smoothstep(player_displacement_size, 0.0, length(push_direction));
 	
-	vec3 player_push_vector = (vec4(normalize(push_direction), 0.0) * MODEL_MATRIX).xyz;
 	
-	// Apply Player Position displacement
-	VERTEX += player_push_vector * (1.0 - UV.y) * player_position_factor * player_displacement_strength * player_height;
-	// Apply Wind displacement linearly
-	VERTEX += wind_vector * (1.0 - UV.y) * (1.0 - player_position_factor * 0.7);
-	
-	// A new normal correction, which aligns the normals of the mesh facing upwards no matter the original direction.
-	NORMAL = vec3(0.0, 1.0, 0.0);
 }
 
 void fragment() {
+	if (disappear == 0.0) {
+		ALPHA = 0.0;
+	}
 	vec3 color = mix(bottom_color, top_color, 1.0 - UV.y);
 	
 	// Add fake ambient occlusion by darkening the base of the mesh
