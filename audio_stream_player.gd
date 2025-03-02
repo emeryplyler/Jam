@@ -22,7 +22,7 @@ func onStageChange():
 
 func _on_timer_timeout() -> void:
 	if not no_music:
-		parameters.looping = false
+		#parameters.looping = false
 		#"parameters/looping"
 		no_music = true
 		stop()
